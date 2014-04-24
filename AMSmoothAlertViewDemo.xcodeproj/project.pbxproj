@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D215E5E91909B0CA002B86F7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = D215E5E71909B0CA002B86F7 /* check.png */; };
+		D215E5EA1909B0CA002B86F7 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D215E5E81909B0CA002B86F7 /* check@2x.png */; };
+		D2DCB0701909994700C7AAF8 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DCB06F1909994700C7AAF8 /* bg.png */; };
+		D2DCB0731909998F00C7AAF8 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DCB0721909998F00C7AAF8 /* GPUImage.framework */; };
+		D2F9153C1909902D008EAAEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153B1909902D008EAAEE /* Foundation.framework */; };
+		D2F9153E1909902D008EAAEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153D1909902D008EAAEE /* CoreGraphics.framework */; };
+		D2F915401909902D008EAAEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153F1909902D008EAAEE /* UIKit.framework */; };
+		D2F915461909902D008EAAEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2F915441909902D008EAAEE /* InfoPlist.strings */; };
+		D2F915481909902D008EAAEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F915471909902D008EAAEE /* main.m */; };
+		D2F9154C1909902D008EAAEE /* AMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F9154B1909902D008EAAEE /* AMAppDelegate.m */; };
+		D2F9154F1909902D008EAAEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F9154D1909902D008EAAEE /* Main.storyboard */; };
+		D2F915521909902D008EAAEE /* AMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F915511909902D008EAAEE /* AMViewController.m */; };
+		D2F915541909902D008EAAEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2F915531909902D008EAAEE /* Images.xcassets */; };
+		D2F9155B1909902D008EAAEE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9155A1909902D008EAAEE /* XCTest.framework */; };
+		D2F9155C1909902D008EAAEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153B1909902D008EAAEE /* Foundation.framework */; };
+		D2F9155D1909902D008EAAEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153F1909902D008EAAEE /* UIKit.framework */; };
+		D2F915651909902D008EAAEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2F915631909902D008EAAEE /* InfoPlist.strings */; };
+		D2F915671909902D008EAAEE /* AMSmoothAlertViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F915661909902D008EAAEE /* AMSmoothAlertViewDemoTests.m */; };
+		D2F9157219099093008EAAEE /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F9157119099093008EAAEE /* AMSmoothAlertView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2F9155E1909902D008EAAEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2F915301909902D008EAAEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2F915371909902D008EAAEE;
+			remoteInfo = AMSmoothAlertViewDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D215E5E71909B0CA002B86F7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = assets/check.png; sourceTree = "<group>"; };
+		D215E5E81909B0CA002B86F7 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check@2x.png"; path = "assets/check@2x.png"; sourceTree = "<group>"; };
+		D2DCB06F1909994700C7AAF8 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		D2DCB0721909998F00C7AAF8 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
+		D2F915381909902D008EAAEE /* AMSmoothAlertViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMSmoothAlertViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F9153B1909902D008EAAEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2F9153D1909902D008EAAEE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2F9153F1909902D008EAAEE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2F915431909902D008EAAEE /* AMSmoothAlertViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AMSmoothAlertViewDemo-Info.plist"; sourceTree = "<group>"; };
+		D2F915451909902D008EAAEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2F915471909902D008EAAEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2F915491909902D008EAAEE /* AMSmoothAlertViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AMSmoothAlertViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		D2F9154A1909902D008EAAEE /* AMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMAppDelegate.h; sourceTree = "<group>"; };
+		D2F9154B1909902D008EAAEE /* AMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMAppDelegate.m; sourceTree = "<group>"; };
+		D2F9154E1909902D008EAAEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2F915501909902D008EAAEE /* AMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMViewController.h; sourceTree = "<group>"; };
+		D2F915511909902D008EAAEE /* AMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMViewController.m; sourceTree = "<group>"; };
+		D2F915531909902D008EAAEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D2F915591909902D008EAAEE /* AMSmoothAlertViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AMSmoothAlertViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F9155A1909902D008EAAEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D2F915621909902D008EAAEE /* AMSmoothAlertViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AMSmoothAlertViewDemoTests-Info.plist"; sourceTree = "<group>"; };
+		D2F915641909902D008EAAEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2F915661909902D008EAAEE /* AMSmoothAlertViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertViewDemoTests.m; sourceTree = "<group>"; };
+		D2F9157019099093008EAAEE /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
+		D2F9157119099093008EAAEE /* AMSmoothAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2F915351909902D008EAAEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F9153E1909902D008EAAEE /* CoreGraphics.framework in Frameworks */,
+				D2DCB0731909998F00C7AAF8 /* GPUImage.framework in Frameworks */,
+				D2F915401909902D008EAAEE /* UIKit.framework in Frameworks */,
+				D2F9153C1909902D008EAAEE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F915561909902D008EAAEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F9155B1909902D008EAAEE /* XCTest.framework in Frameworks */,
+				D2F9155D1909902D008EAAEE /* UIKit.framework in Frameworks */,
+				D2F9155C1909902D008EAAEE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2DCB0711909994C00C7AAF8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D215E5E71909B0CA002B86F7 /* check.png */,
+				D215E5E81909B0CA002B86F7 /* check@2x.png */,
+				D2DCB06F1909994700C7AAF8 /* bg.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		D2F9152F1909902D008EAAEE = {
+			isa = PBXGroup;
+			children = (
+				D2F915411909902D008EAAEE /* AMSmoothAlertViewDemo */,
+				D2F915601909902D008EAAEE /* AMSmoothAlertViewDemoTests */,
+				D2F9153A1909902D008EAAEE /* Frameworks */,
+				D2F915391909902D008EAAEE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2F915391909902D008EAAEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2F915381909902D008EAAEE /* AMSmoothAlertViewDemo.app */,
+				D2F915591909902D008EAAEE /* AMSmoothAlertViewDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2F9153A1909902D008EAAEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2DCB0721909998F00C7AAF8 /* GPUImage.framework */,
+				D2F9153B1909902D008EAAEE /* Foundation.framework */,
+				D2F9153D1909902D008EAAEE /* CoreGraphics.framework */,
+				D2F9153F1909902D008EAAEE /* UIKit.framework */,
+				D2F9155A1909902D008EAAEE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2F915411909902D008EAAEE /* AMSmoothAlertViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D2F9154A1909902D008EAAEE /* AMAppDelegate.h */,
+				D2F9154B1909902D008EAAEE /* AMAppDelegate.m */,
+				D2F9154D1909902D008EAAEE /* Main.storyboard */,
+				D2F915501909902D008EAAEE /* AMViewController.h */,
+				D2F915511909902D008EAAEE /* AMViewController.m */,
+				D2F9157019099093008EAAEE /* AMSmoothAlertView.h */,
+				D2F9157119099093008EAAEE /* AMSmoothAlertView.m */,
+				D2DCB0711909994C00C7AAF8 /* Assets */,
+				D2F915531909902D008EAAEE /* Images.xcassets */,
+				D2F915421909902D008EAAEE /* Supporting Files */,
+			);
+			path = AMSmoothAlertViewDemo;
+			sourceTree = "<group>";
+		};
+		D2F915421909902D008EAAEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2F915431909902D008EAAEE /* AMSmoothAlertViewDemo-Info.plist */,
+				D2F915441909902D008EAAEE /* InfoPlist.strings */,
+				D2F915471909902D008EAAEE /* main.m */,
+				D2F915491909902D008EAAEE /* AMSmoothAlertViewDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2F915601909902D008EAAEE /* AMSmoothAlertViewDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2F915661909902D008EAAEE /* AMSmoothAlertViewDemoTests.m */,
+				D2F915611909902D008EAAEE /* Supporting Files */,
+			);
+			path = AMSmoothAlertViewDemoTests;
+			sourceTree = "<group>";
+		};
+		D2F915611909902D008EAAEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2F915621909902D008EAAEE /* AMSmoothAlertViewDemoTests-Info.plist */,
+				D2F915631909902D008EAAEE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2F915371909902D008EAAEE /* AMSmoothAlertViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F9156A1909902D008EAAEE /* Build configuration list for PBXNativeTarget "AMSmoothAlertViewDemo" */;
+			buildPhases = (
+				D2F915341909902D008EAAEE /* Sources */,
+				D2F915351909902D008EAAEE /* Frameworks */,
+				D2F915361909902D008EAAEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AMSmoothAlertViewDemo;
+			productName = AMSmoothAlertViewDemo;
+			productReference = D2F915381909902D008EAAEE /* AMSmoothAlertViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2F915581909902D008EAAEE /* AMSmoothAlertViewDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F9156D1909902D008EAAEE /* Build configuration list for PBXNativeTarget "AMSmoothAlertViewDemoTests" */;
+			buildPhases = (
+				D2F915551909902D008EAAEE /* Sources */,
+				D2F915561909902D008EAAEE /* Frameworks */,
+				D2F915571909902D008EAAEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2F9155F1909902D008EAAEE /* PBXTargetDependency */,
+			);
+			name = AMSmoothAlertViewDemoTests;
+			productName = AMSmoothAlertViewDemoTests;
+			productReference = D2F915591909902D008EAAEE /* AMSmoothAlertViewDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2F915301909902D008EAAEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AM;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = AMarliac;
+				TargetAttributes = {
+					D2F915581909902D008EAAEE = {
+						TestTargetID = D2F915371909902D008EAAEE;
+					};
+				};
+			};
+			buildConfigurationList = D2F915331909902D008EAAEE /* Build configuration list for PBXProject "AMSmoothAlertViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2F9152F1909902D008EAAEE;
+			productRefGroup = D2F915391909902D008EAAEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2F915371909902D008EAAEE /* AMSmoothAlertViewDemo */,
+				D2F915581909902D008EAAEE /* AMSmoothAlertViewDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2F915361909902D008EAAEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F915541909902D008EAAEE /* Images.xcassets in Resources */,
+				D215E5E91909B0CA002B86F7 /* check.png in Resources */,
+				D2F915461909902D008EAAEE /* InfoPlist.strings in Resources */,
+				D2DCB0701909994700C7AAF8 /* bg.png in Resources */,
+				D2F9154F1909902D008EAAEE /* Main.storyboard in Resources */,
+				D215E5EA1909B0CA002B86F7 /* check@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F915571909902D008EAAEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F915651909902D008EAAEE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2F915341909902D008EAAEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F9154C1909902D008EAAEE /* AMAppDelegate.m in Sources */,
+				D2F9157219099093008EAAEE /* AMSmoothAlertView.m in Sources */,
+				D2F915521909902D008EAAEE /* AMViewController.m in Sources */,
+				D2F915481909902D008EAAEE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F915551909902D008EAAEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F915671909902D008EAAEE /* AMSmoothAlertViewDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2F9155F1909902D008EAAEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2F915371909902D008EAAEE /* AMSmoothAlertViewDemo */;
+			targetProxy = D2F9155E1909902D008EAAEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2F915441909902D008EAAEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F915451909902D008EAAEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2F9154D1909902D008EAAEE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F9154E1909902D008EAAEE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2F915631909902D008EAAEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F915641909902D008EAAEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2F915681909902D008EAAEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D2F915691909902D008EAAEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2F9156B1909902D008EAAEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2F9156C1909902D008EAAEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D2F9156E1909902D008EAAEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AMSmoothAlertViewDemo.app/AMSmoothAlertViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "AMSmoothAlertViewDemoTests/AMSmoothAlertViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D2F9156F1909902D008EAAEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AMSmoothAlertViewDemo.app/AMSmoothAlertViewDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AMSmoothAlertViewDemo/AMSmoothAlertViewDemo-Prefix.pch";
+				INFOPLIST_FILE = "AMSmoothAlertViewDemoTests/AMSmoothAlertViewDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2F915331909902D008EAAEE /* Build configuration list for PBXProject "AMSmoothAlertViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F915681909902D008EAAEE /* Debug */,
+				D2F915691909902D008EAAEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F9156A1909902D008EAAEE /* Build configuration list for PBXNativeTarget "AMSmoothAlertViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F9156B1909902D008EAAEE /* Debug */,
+				D2F9156C1909902D008EAAEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F9156D1909902D008EAAEE /* Build configuration list for PBXNativeTarget "AMSmoothAlertViewDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F9156E1909902D008EAAEE /* Debug */,
+				D2F9156F1909902D008EAAEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2F915301909902D008EAAEE /* Project object */;
+}

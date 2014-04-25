@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AMSmoothAlertView.h"
-
+#import "Constants.h"
 
 @interface AMViewController : UIViewController
 

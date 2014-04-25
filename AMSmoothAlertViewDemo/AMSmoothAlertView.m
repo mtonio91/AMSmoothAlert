@@ -8,15 +8,18 @@
 
 #import "AMSmoothAlertView.h"
 
+
+
 @implementation AMSmoothAlertView
 {
     UIView *alertView;
-    UIView *circleView;
+    AMBouncingView *circleView;
+    UIImageView *logoView;
     UIImageView * bg;
     GPUImageiOSBlurFilter *_blurFilter;
 }
 
-- (id) initWithTitle:(NSString*) title andText:(NSString*) text
+- (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type
 {
     self = [super init];
     if (self) {
@@ -35,10 +38,10 @@
         alertView = [self alertPopupView];
         
         [self labelSetupWithTitle:title andText:text];
-        [self buttonSetup];
+        [self buttonSetupForType:type];
         
         [self addSubview:alertView];
-        [self circleSetup];
+        [self circleSetupForAlertType:type];
 
         [self triggerAnimations];
     }
@@ -72,7 +75,6 @@
 
 -(void) performScreenshotAndBlur
 {
-
     UIImage * image = [self convertViewToImage];
     UIImage *blurredSnapshotImage = [_blurFilter imageByFilteringImage:image];
     
@@ -85,16 +87,32 @@
 
 #pragma mark - Items Setup
 
-- (void) circleSetup
+- (void) circleSetupForAlertType:(AlertType) type
 {
-    circleView = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.width/2)+alertView.frame.size.height/2) - 30 , 0, 0)];
-    UIImageView*imgV = [[UIImageView alloc]initWithFrame:circleView.bounds];
-    [imgV setImage:[UIImage imageNamed:@"check.png"]];
-    imgV.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.width/2)+alertView.frame.size.height/2) - 30 , 60, 60)];
+    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type];
     
-    [circleView clipsToBounds];
-    [circleView addSubview:imgV];
-    [self addSubview:circleView];
+    logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
+    
+    switch (type) {
+        case AlertSuccess:
+            [logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
+            break;
+        case AlertFailure:
+            [logoView setImage:[UIImage imageNamed:@"crossMark.png"]];
+            break;
+        case AlertInfo:
+            [logoView setImage:[UIImage imageNamed:@"info.png"]];
+            break;
+            
+        default:
+            break;
+    }
+    logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    
+    [self addSubview:circleMask];
+    [circleMask addSubview:circleView];
+    [circleMask addSubview:logoView];
 }
 
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
@@ -119,12 +137,27 @@
     
 }
 
-- (void) buttonSetup
+- (void) buttonSetupForType:(AlertType)type
 {
  
     UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
     btn.center = CGPointMake(alertView.frame.size.width/2, 120);
-    btn.backgroundColor = [UIColor colorWithRed:0.443 green:0.765 blue:0.255 alpha:1];
+    
+    switch (type) {
+        case AlertSuccess:
+            btn.backgroundColor = [UIColor colorWithRed:0.443 green:0.765 blue:0.255 alpha:1];
+            break;
+        case AlertFailure:
+            btn.backgroundColor = [UIColor colorWithRed:0.906 green:0.296 blue:0.235 alpha:1];
+            break;
+        case AlertInfo:
+            btn.backgroundColor = [UIColor colorWithRed:0.204 green:0.286 blue:0.369 alpha:1];
+            break;
+            
+        default:
+            break;
+    }
+    
     [btn setTitle:@"Neat !" forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
     [btn addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
@@ -133,7 +166,6 @@
     
 
     [alertView addSubview:btn];
-    
     
 }
 
@@ -170,23 +202,24 @@
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         circleView.frame = [self newFrameForView:circleView withWidth:85 andHeight:85];
+                         circleView.frame = [circleView newFrameWithWidth:85 andHeight:85];
+                         logoView.frame = [self newFrameForView:logoView withWidth:40 andHeight:40];
                      }
                      completion:^(BOOL finished){
                          [UIView animateWithDuration:0.1
                                                delay:0.0
                                              options: UIViewAnimationOptionCurveEaseInOut
                                           animations:^{
-                                              circleView.frame = [self newFrameForView:circleView withWidth:50 andHeight:50];
-                                              
+                                              circleView.frame = [circleView newFrameWithWidth:50 andHeight:50];
+                                              logoView.frame = [self newFrameForView:logoView withWidth:15 andHeight:15];
                                           }
                                           completion:^(BOOL finished){
                                               [UIView animateWithDuration:0.05
                                                                     delay:0.0
                                                                   options: UIViewAnimationOptionCurveEaseInOut
                                                                animations:^{
-                                                                   circleView.frame = [self newFrameForView:circleView withWidth:60 andHeight:60];
-                                                                   
+                                                                   circleView.frame = [circleView newFrameWithWidth:60 andHeight:60];
+                                                                   logoView.frame = [self newFrameForView:logoView withWidth:20 andHeight:20];
                                                                }
                                                                completion:^(BOOL finished){
                                                                    self.isDisplayed = true;
@@ -239,7 +272,6 @@
     return capturedScreen;
 }
 
-
 - (CGRect) newFrameForView:(UIView*) uiview withWidth:(float) width andHeight:(float) height
 {
     return CGRectMake(uiview.frame.origin.x + ((uiview.frame.size.width - width)/2),
@@ -247,6 +279,7 @@
                       width,
                       height);
 }
+
 
 
 

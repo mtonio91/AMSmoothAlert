@@ -34,7 +34,22 @@
 - (IBAction)openPopup:(id)sender {
 
     if (!alert || !alert.isDisplayed) {
-        alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !"];
+        UIButton * btn = (UIButton*) sender;
+        switch (btn.tag) {
+            case AlertSuccess:
+                alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !" forAlertType:AlertSuccess];
+                break;
+            case AlertFailure:
+                alert = [[AMSmoothAlertView alloc]initWithTitle:@"Sorry !" andText:@"You've just displayed this awesome alert view !" forAlertType:AlertFailure];
+                break;
+            case AlertInfo:
+                alert = [[AMSmoothAlertView alloc]initWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" forAlertType:AlertInfo];
+                break;
+                
+            default:
+                break;
+        }
+        
         alert.cornerRadius = 3.0f;
         [self.view addSubview:alert];
     }else{

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <GPUImage/GPUImage.h>
+#import "AMBouncingView.h"
+#import "Constants.h"
 
 @interface AMSmoothAlertView : UIView
 
@@ -15,7 +17,7 @@
 @property (nonatomic, assign) float cornerRadius;
 @property (nonatomic, assign) bool isDisplayed;
 
-- (id) initWithTitle:(NSString*) title andText:(NSString*) text;
+- (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 - (void) setCornerRadius:(float)cornerRadius;
 - (void) dismissAlertView;
 

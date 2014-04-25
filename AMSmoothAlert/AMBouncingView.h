@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Constants.h"
+#import "AMConstants.h"
 
 @interface AMBouncingView : UIView
 
@@ -15,4 +15,5 @@
 
 - (id)initSuccessCircleWithFrame:(CGRect)frame andImageSize:(int) imageSize forAlertType:(AlertType) type;
 - (CGRect) newFrameWithWidth:(float) width andHeight:(float) height;
+
 @end

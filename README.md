@@ -10,8 +10,9 @@ It uses :
 
 Please note that GPUImage doesn't support arm64 devices yet.
 
-Easy to use !
+##Easy to use !
 Main methods :
+
 ```objective-c
 //initialisation with a Title and a message
 - (id) initWithTitle:(NSString*) title andText:(NSString*) text;

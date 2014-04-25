@@ -20,4 +20,11 @@ Main methods :
 
 ```
 
+##Incoming improvments
+
+- performances
+- more customisation
+- more circles + icons
+- more animations
+
 Antoine

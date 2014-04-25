@@ -8,6 +8,8 @@ AMSmoothAlert
 It uses : 
 - GPUImage Framework
 
+Please note that GPUImage doesn't support arm64 devices yet.
+
 Easy to use !
 Main methods :
 ```objective-c

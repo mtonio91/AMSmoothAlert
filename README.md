@@ -1,6 +1,8 @@
 AMSmoothAlert
 ==================
 
+I saw an pretty cool concept of alert view on [Dribbble](https://dribbble.com/shots/1523277-Success-Popup-for-Handybook-New-App-GIF?list=users&offset=0) so i decided to reproduce it !
+
 ![Screen1](https://raw.githubusercontent.com/mtonio91/AMSmoothAlert/master/screenCapture.gif)
 
 ##Installation

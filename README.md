@@ -3,6 +3,6 @@ AMSmoothAlert
 
 Fun alert view
 
-WORK IN PROGRESS
+![Screen1](https://raw.githubusercontent.com/mtonio91/AMSmoothAlert/master/screenCapture.gif)
 
 Antoine

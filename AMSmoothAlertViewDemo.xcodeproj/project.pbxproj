@@ -56,9 +56,9 @@
 		D2164398190AE5A500A60E23 /* crossMark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crossMark@2x.png"; path = "assets/crossMark@2x.png"; sourceTree = "<group>"; };
 		D216439F190AE8AE00A60E23 /* AMBouncingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBouncingView.h; sourceTree = "<group>"; };
 		D21643A0190AE8AE00A60E23 /* AMBouncingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBouncingView.m; sourceTree = "<group>"; };
-		D21643A1190AE8AE00A60E23 /* AMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMConstants.h; sourceTree = "<group>"; };
 		D21643A2190AE8AE00A60E23 /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
 		D21643A3190AE8AE00A60E23 /* AMSmoothAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertView.m; sourceTree = "<group>"; };
+		D21643A6190AE96400A60E23 /* AMSmoothAlertConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertConstants.h; sourceTree = "<group>"; };
 		D2DCB06F1909994700C7AAF8 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		D2DCB0721909998F00C7AAF8 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		D2F915381909902D008EAAEE /* AMSmoothAlertViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMSmoothAlertViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,9 +112,9 @@
 			children = (
 				D216439F190AE8AE00A60E23 /* AMBouncingView.h */,
 				D21643A0190AE8AE00A60E23 /* AMBouncingView.m */,
-				D21643A1190AE8AE00A60E23 /* AMConstants.h */,
 				D21643A2190AE8AE00A60E23 /* AMSmoothAlertView.h */,
 				D21643A3190AE8AE00A60E23 /* AMSmoothAlertView.m */,
+				D21643A6190AE96400A60E23 /* AMSmoothAlertConstants.h */,
 			);
 			path = AMSmoothAlert;
 			sourceTree = "<group>";

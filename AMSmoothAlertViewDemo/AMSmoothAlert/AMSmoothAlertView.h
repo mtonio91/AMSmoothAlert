@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GPUImage/GPUImage.h>
 #import "AMBouncingView.h"
-#import "AMConstants.h"
+#import "AMSmoothAlertConstants.h"
 
 @interface AMSmoothAlertView : UIView
 

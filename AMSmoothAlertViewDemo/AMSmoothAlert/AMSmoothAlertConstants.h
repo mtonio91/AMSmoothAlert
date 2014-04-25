@@ -1,5 +1,5 @@
 //
-//  AMAppDelegate_Constants.h
+//  AMSmoothAlertConstants.h
 //  AMSmoothAlertViewDemo
 //
 //  Created by AMarliac on 2014-04-25.

@@ -13,10 +13,11 @@
 
 
 @property (nonatomic, assign) float cornerRadius;
+@property (nonatomic, assign) bool isDisplayed;
 
 - (id) initWithTitle:(NSString*) title andText:(NSString*) text;
 - (void) setCornerRadius:(float)cornerRadius;
-
+- (void) dismissAlertView;
 
 
 

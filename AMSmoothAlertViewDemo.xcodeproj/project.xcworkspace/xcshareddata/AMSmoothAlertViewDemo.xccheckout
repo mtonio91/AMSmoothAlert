@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5F686B13-ACE1-43AB-BDB5-860A05D2B522</string>
+	<key>IDESourceControlProjectName</key>
+	<string>AMSmoothAlertViewDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F5C70E37-68C2-49AD-8EAE-C501ACF788A8</key>
+		<string>https://github.com/mtonio91/AMSmoothAlert.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>AMSmoothAlertViewDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F5C70E37-68C2-49AD-8EAE-C501ACF788A8</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mtonio91/AMSmoothAlert.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F5C70E37-68C2-49AD-8EAE-C501ACF788A8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5C70E37-68C2-49AD-8EAE-C501ACF788A8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>AMSmoothAlert</string>
+		</dict>
+	</array>
+</dict>
+</plist>

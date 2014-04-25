@@ -15,14 +15,13 @@
 @implementation AMViewController
 {
     AMSmoothAlertView * alert;
+    bool isPopupShown;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-
     
 }
 
@@ -33,13 +32,16 @@
 }
 
 - (IBAction)openPopup:(id)sender {
-    
-    if (alert) {
-        [alert removeFromSuperview];
+
+    if (!alert || !alert.isDisplayed) {
+        alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !"];
+        alert.cornerRadius = 3.0f;
+        [self.view addSubview:alert];
+    }else{
+        [alert dismissAlertView];
     }
-    alert = [[AMSmoothAlertView alloc]initWithTitle:@"" andText:@""];
-    alert.cornerRadius = 3.0f;
-    [self.view addSubview:alert];
+    
+
 }
 
 

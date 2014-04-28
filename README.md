@@ -28,7 +28,12 @@ Main methods :
 ```
 Three types of alert views (for now)
 ```objective-c
-
+typedef enum AlertType : NSInteger AlertType;
+enum AlertType : NSInteger {
+    AlertSuccess,
+    AlertFailure,
+    AlertInfo
+};
 
 ```
 

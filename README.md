@@ -15,6 +15,10 @@ It uses :
 Please note that GPUImage doesn't support arm64 devices yet.
 
 ##Easy to use !
+```objective-c
+    AMSmoothAlertView *alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !" forAlertType:AlertSuccess];
+```
+
 Main methods :
 
 ```objective-c

@@ -19,13 +19,19 @@ Main methods :
 
 ```objective-c
 //initialisation with a Title and a message
-- (id) initWithTitle:(NSString*) title andText:(NSString*) text;
+- (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 //set corner radius or not on the alertView
 - (void) setCornerRadius:(float)cornerRadius;
 //dismiss it !
 - (void) dismissAlertView;
 
 ```
+Three types of alert views (for now)
+```objective-c
+
+
+```
+
 
 ##Incoming improvments
 

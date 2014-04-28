@@ -34,7 +34,6 @@ enum AlertType : NSInteger {
     AlertFailure,
     AlertInfo
 };
-
 ```
 
 

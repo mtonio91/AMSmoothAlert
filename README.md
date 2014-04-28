@@ -5,6 +5,8 @@ I saw this pretty cool alert view concept on [Dribbble](https://dribbble.com/sho
 
 ![Screen1](https://raw.githubusercontent.com/mtonio91/AMSmoothAlert/master/screenCapture.gif)
 
+(the above gif is slower than the real speed animation)
+
 ##Installation
 
 It uses : 

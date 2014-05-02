@@ -45,6 +45,7 @@ enum AlertType : NSInteger {
 
 ##Incoming improvments
 
+- KVO bindings (change the button label for example) 
 - performances
 - more customisation
 - more circles + icons

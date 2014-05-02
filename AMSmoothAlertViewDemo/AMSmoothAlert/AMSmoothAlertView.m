@@ -174,59 +174,106 @@
 
 -(void) triggerAnimations
 {
-    [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         bg.alpha = 1.0;
-                         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2)+alertView.frame.size.height*0.1);
-                                          }
-                                          completion:^(BOOL finished) {
-                                              [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut
-                                                               animations:^{
-                                                                   alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
-                                                               }
-                                                               completion:^(BOOL finished) {
-                                                                   [self circleAnimation];
-                                                               }];
-                                          }];
-                         
-                     }
-                     completion:^(BOOL finished) {
-                     }];
+ 
+    NSMutableArray* animationBlocks = [NSMutableArray new];
+    
+    typedef void(^animationBlock)(BOOL);
+    
+    // getNextAnimation
+    // removes the first block in the queue and returns it
+    animationBlock (^getNextAnimation)() = ^{
+        animationBlock block = animationBlocks.count ? (animationBlock)[animationBlocks objectAtIndex:0] : nil;
+        if (block){
+            [animationBlocks removeObjectAtIndex:0];
+            return block;
+        }else{
+            return ^(BOOL finished){};
+        }
+    };
+    
+    //block 1
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            bg.alpha = 1.0;
+        } completion: getNextAnimation()];
+    }];
+    
+    //block 2
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2)+alertView.frame.size.height*0.1);
+        } completion: getNextAnimation()];
+    }];
+    
+    //block 3
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
+        } completion: getNextAnimation()];
+    }];
+    
+    //add a block to our queue
+    [animationBlocks addObject:^(BOOL finished){;
+        [self circleAnimation];
+    }];
+    
+    // execute the first block in the queue
+    getNextAnimation()(YES);
+    
+    
+    
+    
 }
 
 - (void) circleAnimation
 {
-    [UIView animateWithDuration:0.15
-                          delay:0.0
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         circleView.frame = [circleView newFrameWithWidth:85 andHeight:85];
-                         logoView.frame = [self newFrameForView:logoView withWidth:40 andHeight:40];
-                     }
-                     completion:^(BOOL finished){
-                         [UIView animateWithDuration:0.1
-                                               delay:0.0
-                                             options: UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              circleView.frame = [circleView newFrameWithWidth:50 andHeight:50];
-                                              logoView.frame = [self newFrameForView:logoView withWidth:15 andHeight:15];
-                                          }
-                                          completion:^(BOOL finished){
-                                              [UIView animateWithDuration:0.05
-                                                                    delay:0.0
-                                                                  options: UIViewAnimationOptionCurveEaseInOut
-                                                               animations:^{
-                                                                   circleView.frame = [circleView newFrameWithWidth:60 andHeight:60];
-                                                                   logoView.frame = [self newFrameForView:logoView withWidth:20 andHeight:20];
-                                                               }
-                                                               completion:^(BOOL finished){
-                                                                   self.isDisplayed = true;
-                                                               }];
-                                          }];
-                     }];
+    NSMutableArray* animationBlocks = [NSMutableArray new];
     
+    typedef void(^animationBlock)(BOOL);
+    
+    // getNextAnimation
+    // removes the first block in the queue and returns it
+    animationBlock (^getNextAnimation)() = ^{
+        animationBlock block = animationBlocks.count ? (animationBlock)[animationBlocks objectAtIndex:0] : nil;
+        if (block){
+            [animationBlocks removeObjectAtIndex:0];
+            return block;
+        }else{
+            return ^(BOOL finished){};
+        }
+    };
+    
+    //block 1
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            circleView.frame = [circleView newFrameWithWidth:85 andHeight:85];
+            logoView.frame = [self newFrameForView:logoView withWidth:40 andHeight:40];
+        } completion: getNextAnimation()];
+    }];
+    
+    //block 2
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            circleView.frame = [circleView newFrameWithWidth:50 andHeight:50];
+            logoView.frame = [self newFrameForView:logoView withWidth:15 andHeight:15];
+        } completion: getNextAnimation()];
+    }];
+    
+    //block 3
+    [animationBlocks addObject:^(BOOL finished){;
+        [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            circleView.frame = [circleView newFrameWithWidth:60 andHeight:60];
+            logoView.frame = [self newFrameForView:logoView withWidth:20 andHeight:20];
+        } completion: getNextAnimation()];
+    }];
+    
+    //add a block to our queue
+    [animationBlocks addObject:^(BOOL finished){;
+        self.isDisplayed = true;
+    }];
+    
+    // execute the first block in the queue
+    getNextAnimation()(YES);
 }
 
 

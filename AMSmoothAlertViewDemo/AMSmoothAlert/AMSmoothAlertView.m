@@ -26,8 +26,6 @@
         // Initialization code
         self.frame = [self screenFrame];
         self.opaque = YES;
-        
-        
         self.alpha = 1;
 
         _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
@@ -39,11 +37,10 @@
         
         [self labelSetupWithTitle:title andText:text];
         [self buttonSetupForType:type];
-        
         [self addSubview:alertView];
-        [self circleSetupForAlertType:type];
 
-        [self triggerAnimations];
+        [self circleSetupForAlertType:type];
+        
     }
     return self;
 }
@@ -69,7 +66,11 @@
 }
 
 
-
+- (void) show
+{
+    [self triggerAnimations];
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:self];
+}
 
 #pragma mark - Blur
 

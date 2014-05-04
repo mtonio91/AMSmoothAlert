@@ -19,6 +19,7 @@
 
 - (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 - (void) setCornerRadius:(float)cornerRadius;
+- (void) show;
 - (void) dismissAlertView;
 
 

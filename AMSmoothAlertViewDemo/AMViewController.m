@@ -51,7 +51,8 @@
         }
         
         alert.cornerRadius = 3.0f;
-        [self.view addSubview:alert];
+//        [self.view addSubview:alert];
+        [alert show];
     }else{
         [alert dismissAlertView];
     }

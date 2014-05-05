@@ -20,6 +20,7 @@ AMSmoothAlertView *alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !"
         andText:@"You've just displayed this awesome alert view !" 
         forAlertType:AlertSuccess];
 ```
+You can now edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
 
 Main methods :
 

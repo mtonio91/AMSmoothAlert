@@ -17,6 +17,7 @@
 		D216439C190AE5A500A60E23 /* crossMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2164398190AE5A500A60E23 /* crossMark@2x.png */; };
 		D21643A4190AE8AE00A60E23 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21643A0190AE8AE00A60E23 /* AMBouncingView.m */; };
 		D21643A5190AE8AE00A60E23 /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D21643A3190AE8AE00A60E23 /* AMSmoothAlertView.m */; };
+		D216BD571917ECB100B14146 /* landscape2.png in Resources */ = {isa = PBXBuildFile; fileRef = D216BD561917ECB100B14146 /* landscape2.png */; };
 		D2DCB0701909994700C7AAF8 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DCB06F1909994700C7AAF8 /* bg.png */; };
 		D2DCB0731909998F00C7AAF8 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DCB0721909998F00C7AAF8 /* GPUImage.framework */; };
 		D2F9153C1909902D008EAAEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2F9153B1909902D008EAAEE /* Foundation.framework */; };
@@ -59,6 +60,7 @@
 		D21643A2190AE8AE00A60E23 /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
 		D21643A3190AE8AE00A60E23 /* AMSmoothAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertView.m; sourceTree = "<group>"; };
 		D21643A6190AE96400A60E23 /* AMSmoothAlertConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertConstants.h; sourceTree = "<group>"; };
+		D216BD561917ECB100B14146 /* landscape2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landscape2.png; sourceTree = "<group>"; };
 		D2DCB06F1909994700C7AAF8 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		D2DCB0721909998F00C7AAF8 /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GPUImage.framework; sourceTree = "<group>"; };
 		D2F915381909902D008EAAEE /* AMSmoothAlertViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMSmoothAlertViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		D2DCB0711909994C00C7AAF8 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D216BD561917ECB100B14146 /* landscape2.png */,
 				D2164395190AE5A500A60E23 /* crossMark.png */,
 				D2164396190AE5A500A60E23 /* info.png */,
 				D2164397190AE5A500A60E23 /* info@2x.png */,
@@ -300,6 +303,7 @@
 				D2164399190AE5A500A60E23 /* crossMark.png in Resources */,
 				D216438D190ABA1300A60E23 /* checkMark@2x.png in Resources */,
 				D215E5EA1909B0CA002B86F7 /* check@2x.png in Resources */,
+				D216BD571917ECB100B14146 /* landscape2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

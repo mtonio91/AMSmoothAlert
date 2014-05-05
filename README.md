@@ -24,8 +24,11 @@ AMSmoothAlertView *alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !"
 Main methods :
 
 ```objective-c
-//initialisation with a Title and a message
-- (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
+//initialisation with a Title and a Text message
+//drop animation init
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
+//fade in animation init
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 //set corner radius or not on the alertView
 - (void) setCornerRadius:(float)cornerRadius;
 //show the alertview!

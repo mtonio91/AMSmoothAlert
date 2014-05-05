@@ -16,8 +16,16 @@
 
 @property (nonatomic, assign) float cornerRadius;
 @property (nonatomic, assign) bool isDisplayed;
+@property (nonatomic, assign) AnimationType *animationType;
+@property (nonatomic, strong) UIButton *defaultButton;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIImageView *logoView;
+@property (nonatomic, strong) UIFont *titleFont;
+@property (nonatomic, strong) UIFont *textFont;
 
-- (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 - (void) setCornerRadius:(float)cornerRadius;
 - (void) show;
 - (void) dismissAlertView;

@@ -26,13 +26,13 @@
         // Initialization code        
         switch (type) {
             case AlertSuccess:
-                self.backgroundColor = [UIColor colorWithRed:0.443 green:0.765 blue:0.255 alpha:1];
+                self.backgroundColor = GREENCOLOR;
                 break;
             case AlertFailure:
-                self.backgroundColor = [UIColor colorWithRed:0.906 green:0.296 blue:0.235 alpha:1];
+                self.backgroundColor = REDCOLOR;
                 break;
             case AlertInfo:
-                self.backgroundColor = [UIColor colorWithRed:0.204 green:0.286 blue:0.369 alpha:1];
+                self.backgroundColor = BLUECOLOR;
                 break;
                 
             default:

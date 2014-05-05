@@ -20,17 +20,6 @@ AMSmoothAlertView *alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !"
         andText:@"You've just displayed this awesome alert view !" 
         forAlertType:AlertSuccess];
 ```
-You can now edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
-```objective-c
-//title font customization
-[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
-//text message font customization
-[alert setTextFont:[UIFont fontWithName:@"Futura-Medium" size:13.0f]];
-//icon customization
-[alert.logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
-
-```
-
 
 
 Main methods :
@@ -49,6 +38,17 @@ Main methods :
 - (void) dismissAlertView;
 
 ```
+You can now edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
+```objective-c
+//title font customization
+[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+//text message font customization
+[alert setTextFont:[UIFont fontWithName:@"Futura-Medium" size:13.0f]];
+//icon customization
+[alert.logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
+
+```
+
 Three types of alert views (for now)
 ```objective-c
 typedef enum AlertType : NSInteger AlertType;

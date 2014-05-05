@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 AMarliac. All rights reserved.
 //
 
-typedef enum AlertType : NSInteger AlertType;
-enum AlertType : NSInteger {
+typedef NS_ENUM(NSInteger, AlertType) {
     AlertSuccess,
     AlertFailure,
     AlertInfo

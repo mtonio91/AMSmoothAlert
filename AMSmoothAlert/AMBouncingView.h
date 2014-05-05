@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AMConstants.h"
+#import "AMSmoothAlertConstants.h"
 
 @interface AMBouncingView : UIView
 

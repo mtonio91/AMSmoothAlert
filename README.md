@@ -28,6 +28,8 @@ Main methods :
 - (id) initWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type;
 //set corner radius or not on the alertView
 - (void) setCornerRadius:(float)cornerRadius;
+//show the alertview!
+- (void) show;
 //dismiss it !
 - (void) dismissAlertView;
 

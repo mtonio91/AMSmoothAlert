@@ -21,6 +21,17 @@ AMSmoothAlertView *alert = [[AMSmoothAlertView alloc]initWithTitle:@"Congrats !"
         forAlertType:AlertSuccess];
 ```
 You can now edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
+```objective-c
+//title font customization
+[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+//text message font customization
+[alert setTextFont:[UIFont fontWithName:@"Futura-Medium" size:13.0f]];
+//icon customization
+[alert.logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
+
+```
+
+
 
 Main methods :
 

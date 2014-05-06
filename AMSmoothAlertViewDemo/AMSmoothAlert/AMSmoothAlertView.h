@@ -16,7 +16,7 @@
 
 @property (nonatomic, assign) float cornerRadius;
 @property (nonatomic, assign) bool isDisplayed;
-@property (nonatomic, assign) AnimationType *animationType;
+@property (nonatomic, assign) AnimationType animationType;
 @property (nonatomic, strong) UIButton *defaultButton;
 @property (nonatomic, strong) UIButton *cancelButton;
 @property (nonatomic, strong) UIImageView *logoView;

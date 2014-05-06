@@ -20,30 +20,14 @@
     UILabel * textLabel;
 }
 
+
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type
 {
     self = [super init];
     if (self) {
         // Initialization code
-        self.frame = [self screenFrame];
-        self.opaque = YES;
-        self.alpha = 1;
-
         _animationType = DropAnimation;
-        
-        _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
-        _blurFilter.blurRadiusInPixels = 2.0;
-
-        bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
-
-        alertView = [self alertPopupView];
-        
-        [self labelSetupWithTitle:title andText:text];
-        [self buttonSetupForType:type];
-        [self addSubview:alertView];
-
-        [self circleSetupForAlertType:type];
-        
+        [self _initViewWithTitle:title andText:text forAlertType:type];
     }
     return self;
 }
@@ -54,34 +38,37 @@
     self = [super init];
     if (self) {
         // Initialization code
-        self.frame = [self screenFrame];
-        self.opaque = YES;
-        self.alpha = 1;
-        
         _animationType = FadeInAnimation;
-
-        
-        _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
-        _blurFilter.blurRadiusInPixels = 2.0;
-        
-        bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
-        
-        alertView = [self alertPopupView];
-        
-        [self labelSetupWithTitle:title andText:text];
-        [self buttonSetupForType:type];
-        [self addSubview:alertView];
-        
-        [self circleSetupForAlertType:type];
-        
+        [self _initViewWithTitle:title andText:text forAlertType:type];
     }
     return self;
 }
 
 
+- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text forAlertType:(AlertType)type
+{
+    self.frame = [self screenFrame];
+    self.opaque = YES;
+    self.alpha = 1;
+  
+    _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
+    _blurFilter.blurRadiusInPixels = 2.0;
+  
+    bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
+  
+    alertView = [self alertPopupView];
+  
+    [self labelSetupWithTitle:title andText:text];
+    [self buttonSetupForType:type];
+    [self addSubview:alertView];
+  
+    [self circleSetupForAlertType:type];
+}
+
+
 - (UIView*) alertPopupView
 {
-    
+  
     UIView * alertSquare = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
     
     alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
@@ -101,7 +88,7 @@
 
 - (void) show
 {
-    switch ((int)_animationType) {
+    switch (_animationType) {
         case DropAnimation:
             [self triggerDropAnimations];
             break;

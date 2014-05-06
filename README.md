@@ -68,4 +68,8 @@ enum AlertType : NSInteger {
 - more circles + icons
 - more animations
 
+
+Also check out my other controler [AMLoginViewController](https://github.com/mtonio91/AMLoginViewController)
+
+
 Antoine

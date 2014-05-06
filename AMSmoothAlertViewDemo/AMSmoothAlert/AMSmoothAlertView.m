@@ -68,7 +68,8 @@
 {
     UIView * alertSquare = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
     
-    alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
+    alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:0.6];
+    alertSquare.borderColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
     alertSquare.center = CGPointMake([self screenFrame].size.width/2, -[self screenFrame].size.height/2);
     
     [alertSquare.layer setShadowColor:[UIColor blackColor].CGColor];

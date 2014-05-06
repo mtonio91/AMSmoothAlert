@@ -16,35 +16,34 @@
     AMBouncingView *circleView;
     UIImageView * bg;
     GPUImageiOSBlurFilter *_blurFilter;
-    UILabel * titleLabel;
-    UILabel * textLabel;
+
 }
 
-- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = DropAnimation;
-        [self _initViewWithTitle:title andText:text forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
     }
     return self;
 }
 
 
-- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text forAlertType:(AlertType) type
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title andText:text forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
     }
     return self;
 }
 
 
-- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text forAlertType:(AlertType)type
+- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type
 {
     self.frame = [self screenFrame];
     self.opaque = YES;
@@ -58,7 +57,7 @@
     alertView = [self alertPopupView];
   
     [self labelSetupWithTitle:title andText:text];
-    [self buttonSetupForType:type];
+    [self buttonSetupForType:type withCancelButton: hasCancelButton];
     [self addSubview:alertView];
   
     [self circleSetupForAlertType:type];
@@ -67,12 +66,10 @@
 
 - (UIView*) alertPopupView
 {
-    
     UIView * alertSquare = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
     
     alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
     alertSquare.center = CGPointMake([self screenFrame].size.width/2, -[self screenFrame].size.height/2);
-    
     
     [alertSquare.layer setShadowColor:[UIColor blackColor].CGColor];
     [alertSquare.layer setShadowOpacity:0.4];
@@ -147,68 +144,99 @@
 
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
 {
-    titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-    titleLabel.center = CGPointMake(alertView.frame.size.width/2, 45);
-    titleLabel.text = title;
-    titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20.0f];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
+    _titleLabel.center = CGPointMake(alertView.frame.size.width/2, 45);
+    _titleLabel.text = title;
+    _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20.0f];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [alertView addSubview:titleLabel];
+    [alertView addSubview:_titleLabel];
     
     
-    textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
-    textLabel.center = CGPointMake(alertView.frame.size.width/2, 80);
-    textLabel.text = text;
-    textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
-    textLabel.textAlignment = NSTextAlignmentCenter;
-    textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    textLabel.numberOfLines = 0;
-    [alertView addSubview:textLabel];
+    _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
+    _textLabel.center = CGPointMake(alertView.frame.size.width/2, 80);
+    _textLabel.text = text;
+    _textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _textLabel.numberOfLines = 0;
+    [alertView addSubview:_textLabel];
     
 }
 
-- (void) buttonSetupForType:(AlertType)type
+- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton
 {
  
-    _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-    _defaultButton.center = CGPointMake(alertView.frame.size.width/2, 120);
+    if (hasCancelButton) {
+        //default button
+        _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
+        _defaultButton.center = CGPointMake((alertView.frame.size.width/4)+3, 120);
+
+        //cancel button
+        _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
+        _cancelButton.center = CGPointMake((alertView.frame.size.width*3/4)-3, 120);
+        _cancelButton.backgroundColor = [UIColor colorWithRed:0.792 green:0.792 blue:0.792 alpha:1];
+        
+        [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        _cancelButton.titleLabel.textColor = [UIColor whiteColor];
+        _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+        [_cancelButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+        [_cancelButton.layer setCornerRadius:3.0f];
+    }else{
+        _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
+        _defaultButton.center = CGPointMake(alertView.frame.size.width/2, 120);
+    }
+
+    [self setColorForButton:_defaultButton withType:type];
     
+    //default button end setup
+    [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
+    _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+    [_defaultButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+    [_defaultButton.layer setCornerRadius:3.0f];
+
+    [alertView addSubview:_defaultButton];
+    if (hasCancelButton)[alertView addSubview:_cancelButton];
+
+}
+
+
+- (void) setColorForButton: (UIButton*) btn withType:(AlertType)type
+{
     switch (type) {
         case AlertSuccess:
-            _defaultButton.backgroundColor = GREENCOLOR;
+            btn.backgroundColor = GREENCOLOR;
             break;
         case AlertFailure:
-            _defaultButton.backgroundColor = REDCOLOR;
+            btn.backgroundColor = REDCOLOR;
             break;
         case AlertInfo:
-            _defaultButton.backgroundColor = BLUECOLOR;
+            btn.backgroundColor = BLUECOLOR;
             break;
             
         default:
             break;
     }
-    
-    [_defaultButton setTitle:@"Neat !" forState:UIControlStateNormal];
-    _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-    [_defaultButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_defaultButton.layer setCornerRadius:3.0f];
-    
-
-    [alertView addSubview:_defaultButton];
-    
 }
-
-
 
 - (void) setTitleFont:(UIFont *)titleFont
 {
-    [titleLabel setFont:titleFont];
+    [_titleLabel setFont:titleFont];
 }
 
 - (void) setTextFont:(UIFont *)textFont
 {
-    [textLabel setFont:textFont];
+    [_textLabel setFont:textFont];
+}
+
+-(void) setTitleText:(NSString*) string
+{
+    _titleLabel.text = string;
+}
+
+-(void) setMessageText:(NSString*) string
+{
+    _textLabel.text = string;
 }
 
 #pragma mark - Animations
@@ -260,10 +288,6 @@
     
     // execute the first block in the queue
     getNextAnimation()(YES);
-    
-    
-    
-    
 }
 
 

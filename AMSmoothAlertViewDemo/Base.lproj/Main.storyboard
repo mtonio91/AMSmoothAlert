@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Root-->
+        <!--View Controller - AMSmoothAlert-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="AMViewController" sceneMemberID="viewController">
@@ -59,7 +59,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Root" id="Iq2-6g-dZC">
+                    <navigationItem key="navigationItem" title="AMSmoothAlert" id="Iq2-6g-dZC">
                         <barButtonItem key="rightBarButtonItem" title="Info" id="j4c-d3-M4Z">
                             <connections>
                                 <segue destination="8n6-Bs-Pjs" kind="push" id="yq7-YN-Ba0"/>

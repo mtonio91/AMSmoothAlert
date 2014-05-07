@@ -442,14 +442,13 @@
 
 #pragma mark - Delegate Methods
 - (void)handleButtonTouched:(id)sender {
+	[self dismissAlertView];
+
 	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
 	UIButton *button = (UIButton *) sender;
 	if ([delegate respondsToSelector:@selector(alertView:didDismissWithButton:)]) {
 		// Since there isn't a button index for the alertView, pass the button
 		[delegate alertView:self didDismissWithButton:button];
-	}
-	else {
-		[button addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 

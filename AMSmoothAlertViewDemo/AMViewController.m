@@ -68,18 +68,32 @@
 
 }
 
-#pragma mark - Delegate
+#pragma mark - Delegates
 - (void)alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button {
 	if (alertView == alert) {
 		if (button == alert.defaultButton) {
 			NSLog(@"Default button touched!");
-			[alertView dismissAlertView];
 		}
 		if (button == alert.cancelButton) {
 			NSLog(@"Cancel button touched!");
-			[alertView dismissAlertView];
 		}
 	}
+}
+
+- (void)alertViewWillShow {
+	NSLog(@"AlertView Will Show");
+}
+
+- (void)alertViewDidShow {
+	NSLog(@"AlertView Did Show");
+}
+
+- (void)alertViewWillDismiss {
+	NSLog(@"AlertView Will Dismiss");
+}
+
+- (void)alertViewDidDismiss {
+	NSLog(@"AlertView Did Dismiss");
 }
 
 

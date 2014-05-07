@@ -44,6 +44,7 @@
 
 @protocol AMSmoothAlertViewDelegate <NSObject>
 
+@optional
 -(void) alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button;
 -(void) alertViewWillShow;
 -(void) alertViewDidShow;

@@ -11,6 +11,8 @@
 #import "AMBouncingView.h"
 #import "AMSmoothAlertConstants.h"
 
+@protocol AMSmoothAlertViewDelegate;
+
 @interface AMSmoothAlertView : UIView
 
 
@@ -24,16 +26,23 @@
 @property (nonatomic, strong) UIImageView *logoView;
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIFont *textFont;
+@property (nonatomic, weak) id<AMSmoothAlertViewDelegate> delegate;
 
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (void) setCornerRadius:(float)cornerRadius;
--(void) setTitleText:(NSString*) string;
--(void) setMessageText:(NSString*) string;
+- (void) setTitleText:(NSString*) string;
+- (void) setMessageText:(NSString*) string;
 - (void) show;
 - (void) dismissAlertView;
+- (void) handleButtonTouched:(id) sender;
 
 
+@end
+
+@protocol AMSmoothAlertViewDelegate <NSObject>
+
+-(void)alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button;
 
 @end

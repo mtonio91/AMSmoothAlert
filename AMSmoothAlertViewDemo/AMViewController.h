@@ -10,7 +10,7 @@
 #import "AMSmoothAlertView.h"
 #import "AMSmoothAlertConstants.h"
 
-@interface AMViewController : UIViewController
+@interface AMViewController : UIViewController <AMSmoothAlertViewDelegate>
 
 
 

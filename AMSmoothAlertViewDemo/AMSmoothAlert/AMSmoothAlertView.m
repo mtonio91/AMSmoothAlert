@@ -180,7 +180,7 @@
         [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         _cancelButton.titleLabel.textColor = [UIColor whiteColor];
         _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-        [_cancelButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+		[_cancelButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [_cancelButton.layer setCornerRadius:3.0f];
     }else{
         _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
@@ -192,7 +192,7 @@
     //default button end setup
     [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
     _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-    [_defaultButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+	[_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     [_defaultButton.layer setCornerRadius:3.0f];
 
     [alertView addSubview:_defaultButton];
@@ -440,6 +440,17 @@
                       height);
 }
 
-
+#pragma mark - Delegate Methods
+- (void)handleButtonTouched:(id)sender {
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	UIButton *button = (UIButton *) sender;
+	if ([delegate respondsToSelector:@selector(alertView:didDismissWithButton:)]) {
+		// Since there isn't a button index for the alertView, pass the button
+		[delegate alertView:self didDismissWithButton:button];
+	}
+	else {
+		[button addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+	}
+}
 
 @end

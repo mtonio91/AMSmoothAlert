@@ -68,13 +68,17 @@
 {
     UIView * alertSquare = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
     
-    alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
+    alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:0.8];
     alertSquare.center = CGPointMake([self screenFrame].size.width/2, -[self screenFrame].size.height/2);
     
     [alertSquare.layer setShadowColor:[UIColor blackColor].CGColor];
     [alertSquare.layer setShadowOpacity:0.4];
     [alertSquare.layer setShadowRadius:20.0f];
     [alertSquare.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
+    
+    //Import QuartzCore to import
+    [alertSquare.layer setBorderColor: [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1]; 
+    [alertSquare.layer setBorderWidth: 1.0];  
     
     [self performScreenshotAndBlur];
     

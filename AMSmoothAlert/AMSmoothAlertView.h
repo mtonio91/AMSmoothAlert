@@ -10,6 +10,7 @@
 #import <GPUImage/GPUImage.h>
 #import "AMBouncingView.h"
 #import "AMSmoothAlertConstants.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AMSmoothAlertView : UIView
 

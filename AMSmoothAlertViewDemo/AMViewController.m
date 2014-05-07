@@ -48,6 +48,11 @@
                 alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfo];
                 [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
                 break;
+			case 3:
+				alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"This fires the delegate methods; Check your console!" andCancelButton:YES forAlertType:AlertInfo];
+				[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+				alert.delegate = self;
+				break;
                 
             default:
                 break;
@@ -63,7 +68,19 @@
 
 }
 
-
+#pragma mark - Delegate
+- (void)alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button {
+	if (alertView == alert) {
+		if (button == alert.defaultButton) {
+			NSLog(@"Default button touched!");
+			[alertView dismissAlertView];
+		}
+		if (button == alert.cancelButton) {
+			NSLog(@"Cancel button touched!");
+			[alertView dismissAlertView];
+		}
+	}
+}
 
 
 @end

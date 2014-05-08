@@ -34,7 +34,8 @@
             case AlertInfo:
                 self.backgroundColor = BLUECOLOR;
                 break;
-                
+            case AlertInfoPurple:
+                self.backgroundColor = PURPLECOLOR;
             default:
                 break;
         }

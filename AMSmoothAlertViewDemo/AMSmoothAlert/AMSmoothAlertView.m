@@ -131,7 +131,9 @@
         case AlertInfo:
             [_logoView setImage:[UIImage imageNamed:@"info.png"]];
             break;
-            
+        case AlertInfoPurple:
+            [_logoView setImage:[UIImage imageNamed:@"info.png"]];
+            break;
         default:
             break;
     }
@@ -213,6 +215,8 @@
         case AlertInfo:
             btn.backgroundColor = BLUECOLOR;
             break;
+        case AlertInfoPurple:
+            btn.backgroundColor = PURPLECOLOR;
             
         default:
             break;

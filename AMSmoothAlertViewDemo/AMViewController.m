@@ -48,11 +48,16 @@
                 alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfo];
                 [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
                 break;
-			case 3:
+            case AlertInfoPurple:
+                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfoPurple];
+                [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+                break;
+            case 4:
 				alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"This fires the delegate methods; Check your console!" andCancelButton:YES forAlertType:AlertInfo];
 				[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
 				alert.delegate = self;
 				break;
+
                 
             default:
                 break;

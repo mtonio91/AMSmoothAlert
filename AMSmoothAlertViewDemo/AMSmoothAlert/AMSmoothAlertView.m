@@ -21,11 +21,16 @@
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
+    return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+{
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = DropAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
     }
     return self;
 }
@@ -33,17 +38,22 @@
 
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
+    return [self initFadeAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+{
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
     }
     return self;
 }
 
 
-- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type
+- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type andColor:(UIColor*) color
 {
     self.frame = [self screenFrame];
     self.opaque = YES;
@@ -57,10 +67,10 @@
     alertView = [self alertPopupView];
   
     [self labelSetupWithTitle:title andText:text];
-    [self buttonSetupForType:type withCancelButton: hasCancelButton];
+    [self buttonSetupForType:type withCancelButton: hasCancelButton andColor:color];
     [self addSubview:alertView];
   
-    [self circleSetupForAlertType:type];
+    [self circleSetupForAlertType:type andColor:color];
 }
 
 
@@ -114,10 +124,10 @@
 
 #pragma mark - Items Setup
 
-- (void) circleSetupForAlertType:(AlertType) type
+- (void) circleSetupForAlertType:(AlertType) type andColor:(UIColor*) color
 {
     UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-alertView.frame.size.height/2) , 60, 60)];
-    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type];
+    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
     
     _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
     
@@ -131,7 +141,7 @@
         case AlertInfo:
             [_logoView setImage:[UIImage imageNamed:@"info.png"]];
             break;
-            
+
         default:
             break;
     }
@@ -164,7 +174,7 @@
     
 }
 
-- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton
+- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton andColor:(UIColor*) color
 {
  
     if (hasCancelButton) {
@@ -187,7 +197,7 @@
         _defaultButton.center = CGPointMake(alertView.frame.size.width/2, 120);
     }
 
-    [self setColorForButton:_defaultButton withType:type];
+    [self setColorForButton:color onButton:_defaultButton withType:type];
     
     //default button end setup
     [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
@@ -201,22 +211,30 @@
 }
 
 
-- (void) setColorForButton: (UIButton*) btn withType:(AlertType)type
+- (void) setColorForButton:(UIColor*) color onButton:(UIButton*) btn withType:(AlertType)type
 {
-    switch (type) {
-        case AlertSuccess:
-            btn.backgroundColor = GREENCOLOR;
-            break;
-        case AlertFailure:
-            btn.backgroundColor = REDCOLOR;
-            break;
-        case AlertInfo:
-            btn.backgroundColor = BLUECOLOR;
-            break;
-            
-        default:
-            break;
+    if (color)
+    {
+        btn.backgroundColor = color;
     }
+    else
+    {
+        switch (type) {
+            case AlertSuccess:
+                btn.backgroundColor = GREENCOLOR;
+                break;
+            case AlertFailure:
+                btn.backgroundColor = REDCOLOR;
+                break;
+            case AlertInfo:
+                btn.backgroundColor = BLUECOLOR;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
 }
 
 - (void) setTitleFont:(UIFont *)titleFont

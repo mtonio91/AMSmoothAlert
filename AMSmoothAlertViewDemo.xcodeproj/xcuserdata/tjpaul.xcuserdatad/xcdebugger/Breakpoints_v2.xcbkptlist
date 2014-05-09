@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
             endingLineNumber = "214"
-            landmarkName = "-buttonSetupForType:withCancelButton:andColor:"
+            landmarkName = "-setColorForButton:onButton:withType:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "@implementation AMSmoothAlertView"
-            landmarkType = "3">
+            landmarkName = "-circleSetupForAlertType:andColor:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

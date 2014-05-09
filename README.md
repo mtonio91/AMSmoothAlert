@@ -69,7 +69,7 @@ enum AlertType : NSInteger {
 ```
 
 
-##Incoming improvments
+##Incoming improvements
 
 - KVO bindings (change the button label for example) 
 - performances
@@ -78,7 +78,7 @@ enum AlertType : NSInteger {
 - more animations
 
 
-Also check out my other controler [AMLoginViewController](https://github.com/mtonio91/AMLoginViewController)
+Also check out my other controller [AMLoginViewController](https://github.com/mtonio91/AMLoginViewController)
 
 
 Antoine

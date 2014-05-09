@@ -19,25 +19,30 @@
     return self;
 }
 
-- (id)initSuccessCircleWithFrame:(CGRect)frame andImageSize:(int) imageSize forAlertType:(AlertType) type
+- (id)initSuccessCircleWithFrame:(CGRect)frame andImageSize:(int) imageSize forAlertType:(AlertType) type andColor:(UIColor*) color
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code        
-        switch (type) {
-            case AlertSuccess:
-                self.backgroundColor = GREENCOLOR;
-                break;
-            case AlertFailure:
-                self.backgroundColor = REDCOLOR;
-                break;
-            case AlertInfo:
-                self.backgroundColor = BLUECOLOR;
-                break;
-            case AlertInfoPurple:
-                self.backgroundColor = PURPLECOLOR;
-            default:
-                break;
+        // Initialization code
+        if (color)
+        {
+            self.backgroundColor = color;
+        }
+        else
+        {
+            switch (type) {
+                case AlertSuccess:
+                    self.backgroundColor = GREENCOLOR;
+                    break;
+                case AlertFailure:
+                    self.backgroundColor = REDCOLOR;
+                    break;
+                case AlertInfo:
+                    self.backgroundColor = BLUECOLOR;
+                    break;
+                default:
+                    break;
+            }
         }
         
         [self.layer setCornerRadius:30];

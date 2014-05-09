@@ -9,8 +9,7 @@
 typedef NS_ENUM(NSInteger, AlertType) {
     AlertSuccess,
     AlertFailure,
-    AlertInfo,
-    AlertInfoPurple
+    AlertInfo
 };
 
 
@@ -25,4 +24,3 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 #define GREENCOLOR  [UIColor colorWithRed:0.443 green:0.765 blue:0.255 alpha:1]
 #define REDCOLOR    [UIColor colorWithRed:0.906 green:0.296 blue:0.235 alpha:1]
 #define BLUECOLOR   [UIColor colorWithRed:0.204 green:0.286 blue:0.369 alpha:1]
-#define PURPLECOLOR [UIColor colorWithRed:0.607 green:0.372 blue:0.862 alpha:1]

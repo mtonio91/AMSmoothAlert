@@ -48,8 +48,9 @@
                 alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfo];
                 [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
                 break;
-            case AlertInfoPurple:
-                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfoPurple];
+            case 3:
+                // Custom colored alert of type AlertInfo, custom colors can be applied to any alert type
+                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfo andColor:[UIColor colorWithRed:0.607 green:0.372 blue:0.862 alpha:1]];
                 [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
                 break;
             case 4:

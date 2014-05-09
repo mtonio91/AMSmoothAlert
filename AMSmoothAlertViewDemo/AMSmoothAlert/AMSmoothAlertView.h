@@ -46,9 +46,9 @@
 
 @optional
 -(void) alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button;
--(void) alertViewWillShow;
--(void) alertViewDidShow;
--(void) alertViewWillDismiss;
--(void) alertViewDidDismiss;
+-(void) alertViewWillShow:(AMSmoothAlertView *)alertView;
+-(void) alertViewDidShow:(AMSmoothAlertView *)alertView;
+-(void) alertViewWillDismiss:(AMSmoothAlertView *)alertView;
+-(void) alertViewDidDismiss:(AMSmoothAlertView *)alertView;
 
 @end

@@ -86,7 +86,7 @@
 - (void) show
 {
 	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
-	if ([delegate respondsToSelector:@selector(alertViewWillShow)]) [delegate alertViewWillShow];
+	if ([delegate respondsToSelector:@selector(alertViewWillShow:)]) [delegate alertViewWillShow:self];
 
     switch (_animationType) {
         case DropAnimation:
@@ -388,7 +388,7 @@
     [animationBlocks addObject:^(BOOL finished){;
         self.isDisplayed = true;
 		id<AMSmoothAlertViewDelegate> delegate = self.delegate;
-		if ([delegate respondsToSelector:@selector(alertViewDidShow)]) [delegate alertViewDidShow];
+		if ([delegate respondsToSelector:@selector(alertViewDidShow:)]) [delegate alertViewDidShow:self];
     }];
     
     // execute the first block in the queue
@@ -399,7 +399,7 @@
 - (void) dismissAlertView
 {
 	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
-	if ([delegate respondsToSelector:@selector(alertViewWillDismiss)]) [delegate alertViewWillDismiss];
+	if ([delegate respondsToSelector:@selector(alertViewWillDismiss:)]) [delegate alertViewWillDismiss:self];
     [UIView animateWithDuration:0.4
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -409,7 +409,7 @@
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
                          self.isDisplayed = false;
-						 if ([delegate respondsToSelector:@selector(alertViewDidDismiss)]) [delegate alertViewDidDismiss];
+						 if ([delegate respondsToSelector:@selector(alertViewDidDismiss:)]) [delegate alertViewDidDismiss:self];
                      }];
 }
 

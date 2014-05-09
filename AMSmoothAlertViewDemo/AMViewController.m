@@ -51,6 +51,7 @@
 			case 3:
 				alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"This fires the delegate methods; Check your console!" andCancelButton:YES forAlertType:AlertInfo];
 				[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+                alert.tag = 0;
 				alert.delegate = self;
 				break;
                 
@@ -80,20 +81,21 @@
 	}
 }
 
-- (void)alertViewWillShow {
-	NSLog(@"AlertView Will Show");
+- (void)alertViewWillShow:(AMSmoothAlertView *)alertView {
+    if (alertView.tag == 0)
+        NSLog(@"AlertView Will Show: '%@'", alertView.titleLabel.text);
 }
 
-- (void)alertViewDidShow {
-	NSLog(@"AlertView Did Show");
+- (void)alertViewDidShow:(AMSmoothAlertView *)alertView {
+	NSLog(@"AlertView Did Show: '%@'", alertView.titleLabel.text);
 }
 
-- (void)alertViewWillDismiss {
-	NSLog(@"AlertView Will Dismiss");
+- (void)alertViewWillDismiss:(AMSmoothAlertView *)alertView {
+	NSLog(@"AlertView Will Dismiss: '%@'", alertView.titleLabel.text);
 }
 
-- (void)alertViewDidDismiss {
-	NSLog(@"AlertView Did Dismiss");
+- (void)alertViewDidDismiss:(AMSmoothAlertView *)alertView {
+	NSLog(@"AlertView Did Dismiss: '%@'", alertView.titleLabel.text);
 }
 
 

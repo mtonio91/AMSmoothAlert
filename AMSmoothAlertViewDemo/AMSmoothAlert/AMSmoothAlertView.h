@@ -3,6 +3,7 @@
 //  AMSmoothAlertViewDemo
 //
 //  Created by AMarliac on 2014-04-24.
+//  Contributor: Everest Liu
 //  Copyright (c) 2014 AMarliac. All rights reserved.
 //
 
@@ -45,6 +46,11 @@
 
 @protocol AMSmoothAlertViewDelegate <NSObject>
 
--(void)alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button;
+@optional
+-(void) alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button;
+-(void) alertViewWillShow:(AMSmoothAlertView *)alertView;
+-(void) alertViewDidShow:(AMSmoothAlertView *)alertView;
+-(void) alertViewWillDismiss:(AMSmoothAlertView *)alertView;
+-(void) alertViewDidDismiss:(AMSmoothAlertView *)alertView;
 
 @end

@@ -3,6 +3,7 @@
 //  AMSmoothAlertViewDemo
 //
 //  Created by AMarliac on 2014-04-24.
+//  Contributor: Everest Liu
 //  Copyright (c) 2014 AMarliac. All rights reserved.
 //
 
@@ -94,6 +95,9 @@
 
 - (void) show
 {
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	if ([delegate respondsToSelector:@selector(alertViewWillShow:)]) [delegate alertViewWillShow:self];
+
     switch (_animationType) {
         case DropAnimation:
             [self triggerDropAnimations];
@@ -401,6 +405,8 @@
     //add a block to our queue
     [animationBlocks addObject:^(BOOL finished){;
         self.isDisplayed = true;
+		id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+		if ([delegate respondsToSelector:@selector(alertViewDidShow:)]) [delegate alertViewDidShow:self];
     }];
     
     // execute the first block in the queue
@@ -410,6 +416,8 @@
 
 - (void) dismissAlertView
 {
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	if ([delegate respondsToSelector:@selector(alertViewWillDismiss:)]) [delegate alertViewWillDismiss:self];
     [UIView animateWithDuration:0.4
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -419,6 +427,7 @@
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
                          self.isDisplayed = false;
+						 if ([delegate respondsToSelector:@selector(alertViewDidDismiss:)]) [delegate alertViewDidDismiss:self];
                      }];
 }
 

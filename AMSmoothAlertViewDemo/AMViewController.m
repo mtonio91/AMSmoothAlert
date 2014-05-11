@@ -39,6 +39,13 @@
             case AlertSuccess:
                 alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !" andCancelButton:NO forAlertType:AlertSuccess];
                 [alert.defaultButton setTitle:@"Great" forState:UIControlStateNormal];
+                alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
+                    if(button == alertObj.defaultButton) {
+                        NSLog(@"Default");
+                    } else {
+                        NSLog(@"Others");
+                    }
+                };
                 break;
             case AlertFailure:
                 alert = [[AMSmoothAlertView alloc]initFadeAlertWithTitle:@"Sorry !" andText:@"You've just displayed this awesome alert view !" andCancelButton:NO forAlertType:AlertFailure];

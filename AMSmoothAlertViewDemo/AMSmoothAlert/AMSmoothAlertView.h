@@ -12,6 +12,10 @@
 #import "AMBouncingView.h"
 #import "AMSmoothAlertConstants.h"
 
+@class AMSmoothAlertView;
+
+typedef void (^dismissAlertWithButton)(AMSmoothAlertView *, UIButton *);
+
 @protocol AMSmoothAlertViewDelegate;
 
 @interface AMSmoothAlertView : UIView
@@ -28,12 +32,21 @@
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIFont *textFont;
 @property (nonatomic, weak) id<AMSmoothAlertViewDelegate> delegate;
+@property (nonatomic, copy) dismissAlertWithButton completionBlock;
 
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color;
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color;
+
+// init with completion block
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler;
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler;
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler;
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler;
+
 - (void) setCornerRadius:(float)cornerRadius;
 - (void) setTitleText:(NSString*) string;
 - (void) setMessageText:(NSString*) string;

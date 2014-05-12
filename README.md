@@ -38,9 +38,11 @@ Main methods :
 //drop animation init
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton: BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color;
+
 //fade in animation init
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type;
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color;
+
 //set corner radius or not on the alertView
 - (void) setCornerRadius:(float)cornerRadius;
 //show the alertview!
@@ -49,7 +51,20 @@ Main methods :
 - (void) dismissAlertView;
 
 ```
-You can now edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
+Support completion blocks
+```objective-c
+
+alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
+        if(button == alertObj.defaultButton) {
+                NSLog(@"Default");
+        } else {
+                NSLog(@"Others");
+        }
+};
+
+```
+
+You can edit title and text fonts, circle icon, colors and the "ok" button (multiple button feature is coming soon).
 ```objective-c
 //title font customization
 [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];

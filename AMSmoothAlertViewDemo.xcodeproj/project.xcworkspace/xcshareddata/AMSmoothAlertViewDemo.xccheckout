@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9E08DA51-1D2F-4FC7-BFF0-FC0F5F315402</string>
+	<string>C2D8765B-2ACB-4FC4-B1DA-2C3989C6DA2C</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AMSmoothAlertViewDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>775520BE-3F61-43B3-9490-8AA680F2C278</key>
-		<string>https://github.com/tjpaul/AMSmoothAlert.git</string>
+		<key>B503F6EB-7C7D-4530-8746-E58449F5A0DA</key>
+		<string>https://github.com/mtonio91/AMSmoothAlert.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AMSmoothAlertViewDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>775520BE-3F61-43B3-9490-8AA680F2C278</key>
+		<key>B503F6EB-7C7D-4530-8746-E58449F5A0DA</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/tjpaul/AMSmoothAlert.git</string>
+	<string>https://github.com/mtonio91/AMSmoothAlert.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>775520BE-3F61-43B3-9490-8AA680F2C278</string>
+	<string>B503F6EB-7C7D-4530-8746-E58449F5A0DA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>775520BE-3F61-43B3-9490-8AA680F2C278</string>
+			<string>B503F6EB-7C7D-4530-8746-E58449F5A0DA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AMSmoothAlert</string>
 		</dict>

@@ -3,6 +3,7 @@
 //  AMSmoothAlertViewDemo
 //
 //  Created by AMarliac on 2014-04-24.
+//  Contributor: Everest Liu
 //  Copyright (c) 2014 AMarliac. All rights reserved.
 //
 
@@ -21,11 +22,16 @@
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
+    return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+{
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = DropAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
     }
     return self;
 }
@@ -33,17 +39,61 @@
 
 - (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
+    return [self initFadeAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+{
     self = [super init];
     if (self) {
         // Initialization code
         _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type];
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+    }
+    return self;
+}
+
+// init with completion blocks
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler
+{
+    self.completionBlock = completionHandler;
+    return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler
+{
+    self = [super init];
+    if (self) {
+        // Initialization code
+        self.completionBlock = completionHandler;
+        _animationType = DropAnimation;
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
     }
     return self;
 }
 
 
-- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler
+{
+    self.completionBlock = completionHandler;
+    return [self initFadeAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+}
+
+- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler
+{
+    self = [super init];
+    if (self) {
+        // Initialization code
+        self.completionBlock = completionHandler;
+        _animationType = FadeInAnimation;
+        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+    }
+    return self;
+}
+
+
+- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type andColor:(UIColor*) color
 {
     self.frame = [self screenFrame];
     self.opaque = YES;
@@ -57,10 +107,10 @@
     alertView = [self alertPopupView];
   
     [self labelSetupWithTitle:title andText:text];
-    [self buttonSetupForType:type withCancelButton: hasCancelButton];
+    [self buttonSetupForType:type withCancelButton: hasCancelButton andColor:color];
     [self addSubview:alertView];
   
-    [self circleSetupForAlertType:type];
+    [self circleSetupForAlertType:type andColor:color];
 }
 
 
@@ -84,6 +134,9 @@
 
 - (void) show
 {
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	if ([delegate respondsToSelector:@selector(alertViewWillShow:)]) [delegate alertViewWillShow:self];
+
     switch (_animationType) {
         case DropAnimation:
             [self triggerDropAnimations];
@@ -114,10 +167,10 @@
 
 #pragma mark - Items Setup
 
-- (void) circleSetupForAlertType:(AlertType) type
+- (void) circleSetupForAlertType:(AlertType) type andColor:(UIColor*) color
 {
     UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-alertView.frame.size.height/2) , 60, 60)];
-    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type];
+    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
     
     _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
     
@@ -131,7 +184,7 @@
         case AlertInfo:
             [_logoView setImage:[UIImage imageNamed:@"info.png"]];
             break;
-            
+
         default:
             break;
     }
@@ -164,7 +217,7 @@
     
 }
 
-- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton
+- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton andColor:(UIColor*) color
 {
  
     if (hasCancelButton) {
@@ -180,19 +233,19 @@
         [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         _cancelButton.titleLabel.textColor = [UIColor whiteColor];
         _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-        [_cancelButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+		[_cancelButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
         [_cancelButton.layer setCornerRadius:3.0f];
     }else{
         _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
         _defaultButton.center = CGPointMake(alertView.frame.size.width/2, 120);
     }
 
-    [self setColorForButton:_defaultButton withType:type];
+    [self setColorForButton:color onButton:_defaultButton withType:type];
     
     //default button end setup
     [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
     _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-    [_defaultButton addTarget:self action:@selector(dismissAlertView) forControlEvents:UIControlEventTouchUpInside];
+	[_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     [_defaultButton.layer setCornerRadius:3.0f];
 
     [alertView addSubview:_defaultButton];
@@ -201,22 +254,30 @@
 }
 
 
-- (void) setColorForButton: (UIButton*) btn withType:(AlertType)type
+- (void) setColorForButton:(UIColor*) color onButton:(UIButton*) btn withType:(AlertType)type
 {
-    switch (type) {
-        case AlertSuccess:
-            btn.backgroundColor = GREENCOLOR;
-            break;
-        case AlertFailure:
-            btn.backgroundColor = REDCOLOR;
-            break;
-        case AlertInfo:
-            btn.backgroundColor = BLUECOLOR;
-            break;
-            
-        default:
-            break;
+    if (color)
+    {
+        btn.backgroundColor = color;
     }
+    else
+    {
+        switch (type) {
+            case AlertSuccess:
+                btn.backgroundColor = GREENCOLOR;
+                break;
+            case AlertFailure:
+                btn.backgroundColor = REDCOLOR;
+                break;
+            case AlertInfo:
+                btn.backgroundColor = BLUECOLOR;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
 }
 
 - (void) setTitleFont:(UIFont *)titleFont
@@ -383,6 +444,8 @@
     //add a block to our queue
     [animationBlocks addObject:^(BOOL finished){;
         self.isDisplayed = true;
+		id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+		if ([delegate respondsToSelector:@selector(alertViewDidShow:)]) [delegate alertViewDidShow:self];
     }];
     
     // execute the first block in the queue
@@ -392,6 +455,8 @@
 
 - (void) dismissAlertView
 {
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	if ([delegate respondsToSelector:@selector(alertViewWillDismiss:)]) [delegate alertViewWillDismiss:self];
     [UIView animateWithDuration:0.4
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseInOut
@@ -401,6 +466,7 @@
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
                          self.isDisplayed = false;
+						 if ([delegate respondsToSelector:@selector(alertViewDidDismiss:)]) [delegate alertViewDidDismiss:self];
                      }];
 }
 
@@ -440,6 +506,20 @@
                       height);
 }
 
+#pragma mark - Delegate Methods
+- (void)handleButtonTouched:(id)sender {
+	[self dismissAlertView];
 
+	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
+	UIButton *button = (UIButton *) sender;
+	if ([delegate respondsToSelector:@selector(alertView:didDismissWithButton:)]) {
+		// Since there isn't a button index for the alertView, pass the button
+		[delegate alertView:self didDismissWithButton:button];
+	}
+    
+    if(self.completionBlock) {
+        self.completionBlock(self, button);
+    }
+}
 
 @end

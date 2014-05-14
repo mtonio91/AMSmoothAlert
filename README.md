@@ -97,5 +97,6 @@ enum AlertType : NSInteger {
 
 Also check out my other controller [AMLoginViewController](https://github.com/mtonio91/AMLoginViewController)
 
+[@Toinetoine75](https://twitter.com/Toinetoine75)
 
 Antoine

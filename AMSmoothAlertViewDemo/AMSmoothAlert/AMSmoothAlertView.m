@@ -11,16 +11,17 @@
 
 @interface AMSmoothAlertView ()
 @property (nonatomic, strong) UIView *alertView;
+@property (nonatomic, strong) GPUImageiOSBlurFilter *blurFilter;
 @end
 
 @implementation AMSmoothAlertView
 {
     AMBouncingView *circleView;
     UIImageView * bg;
-    GPUImageiOSBlurFilter *_blurFilter;
 
 }
 
+#pragma mark - Getters
 -(UIView*)alertView
 {
     if (_alertView == nil) {
@@ -33,6 +34,15 @@
         [_alertView.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
     }
     return _alertView;
+}
+
+-(GPUImageiOSBlurFilter*)blurFilter
+{
+    if (_blurFilter == nil) {
+        _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
+        _blurFilter.blurRadiusInPixels = 2.0;
+    }
+    return _blurFilter;
 }
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
@@ -114,8 +124,7 @@
     self.opaque = YES;
     self.alpha = 1;
   
-    _blurFilter = [[GPUImageiOSBlurFilter alloc] init];
-    _blurFilter.blurRadiusInPixels = 2.0;
+    
   
     bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
   
@@ -152,7 +161,7 @@
 -(void) performScreenshotAndBlur
 {
     UIImage * image = [self convertViewToImage];
-    UIImage *blurredSnapshotImage = [_blurFilter imageByFilteringImage:image];
+    UIImage *blurredSnapshotImage = [self.blurFilter imageByFilteringImage:image];
     
     [bg setImage:blurredSnapshotImage];
     bg.alpha = 0.0;

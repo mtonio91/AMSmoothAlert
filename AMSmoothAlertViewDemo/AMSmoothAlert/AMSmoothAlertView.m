@@ -93,80 +93,143 @@
     return _defaultButton;
 }
 
-- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
+- (id) initDropAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
 {
-    return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+    return [self initDropAlertWithTitle:title
+                                andText:text
+                        andCancelButton:hasCancelButton
+                           forAlertType:type
+                               andColor:nil];
 }
 
-- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+- (id) initDropAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+                     andColor:(UIColor*)color
 {
     self = [super init];
     if (self) {
-        // Initialization code
         _animationType = DropAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+        [self _initViewWithTitle:title
+                         andText:text
+                 andCancelButton:hasCancelButton
+                    forAlertType:type
+                        andColor:color];
     }
     return self;
 }
 
 
-- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
+- (id) initFadeAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
 {
-    return [self initFadeAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+    return [self initFadeAlertWithTitle:title
+                                andText:text
+                        andCancelButton:hasCancelButton
+                           forAlertType:type
+                               andColor:nil];
 }
 
-- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color
+- (id) initFadeAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+                     andColor:(UIColor*) color
 {
     self = [super init];
     if (self) {
-        // Initialization code
         _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+        [self _initViewWithTitle:title
+                         andText:text
+                 andCancelButton:hasCancelButton
+                    forAlertType:type
+                        andColor:color];
     }
     return self;
 }
 
-// init with completion blocks
 
-- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler
+- (id) initDropAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+        withCompletionHandler:(dismissAlertWithButton)completionHandler
 {
     self.completionBlock = completionHandler;
-    return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+    return [self initDropAlertWithTitle:title
+                                andText:text
+                        andCancelButton:hasCancelButton
+                           forAlertType:type
+                               andColor:nil];
 }
 
-- (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler
+- (id) initDropAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+                     andColor:(UIColor*)color
+        withCompletionHandler:(dismissAlertWithButton) completionHandler
 {
     self = [super init];
     if (self) {
-        // Initialization code
         self.completionBlock = completionHandler;
         _animationType = DropAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+        [self _initViewWithTitle:title
+                         andText:text
+                 andCancelButton:hasCancelButton
+                    forAlertType:type
+                        andColor:color];
     }
     return self;
 }
 
 
-- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type withCompletionHandler:(dismissAlertWithButton) completionHandler
+- (id) initFadeAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+        withCompletionHandler:(dismissAlertWithButton)completionHandler
 {
     self.completionBlock = completionHandler;
-    return [self initFadeAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
+    return [self initFadeAlertWithTitle:title
+                                andText:text
+                        andCancelButton:hasCancelButton
+                           forAlertType:type
+                               andColor:nil];
 }
 
-- (id) initFadeAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type andColor:(UIColor*) color withCompletionHandler:(dismissAlertWithButton) completionHandler
+- (id) initFadeAlertWithTitle:(NSString*)title
+                      andText:(NSString*)text
+              andCancelButton:(BOOL)hasCancelButton
+                 forAlertType:(AlertType)type
+                     andColor:(UIColor*)color
+        withCompletionHandler:(dismissAlertWithButton)completionHandler
 {
     self = [super init];
     if (self) {
-        // Initialization code
         self.completionBlock = completionHandler;
         _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:color];
+        [self _initViewWithTitle:title
+                         andText:text
+                 andCancelButton:hasCancelButton
+                    forAlertType:type
+                        andColor:color];
     }
     return self;
 }
 
 
-- (void) _initViewWithTitle:(NSString *)title andText:(NSString *)text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType)type andColor:(UIColor*) color
+- (void) _initViewWithTitle:(NSString *)title
+                    andText:(NSString *)text
+            andCancelButton:(BOOL)hasCancelButton
+               forAlertType:(AlertType)type
+                   andColor:(UIColor*)color
 {
     self.frame = [self screenFrame];
     self.opaque = YES;

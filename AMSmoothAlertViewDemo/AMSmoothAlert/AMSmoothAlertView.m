@@ -45,6 +45,17 @@
     return _blurFilter;
 }
 
+-(UILabel*)titleLabel
+{
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
+        _titleLabel.center = CGPointMake(self.alertView.frame.size.width/2, 45);
+        _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20.0f];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleLabel;
+}
+
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
     return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
@@ -202,14 +213,9 @@
 
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
 {
-    _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-    _titleLabel.center = CGPointMake(self.alertView.frame.size.width/2, 45);
-    _titleLabel.text = title;
-    _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20.0f];
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.text = title;
     
-    [self.alertView addSubview:_titleLabel];
-    
+    [self.alertView addSubview:self.titleLabel];
     
     _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
     _textLabel.center = CGPointMake(self.alertView.frame.size.width/2, 80);
@@ -285,24 +291,24 @@
     
 }
 
-- (void) setTitleFont:(UIFont *)titleFont
+- (void)setTitleFont:(UIFont *)titleFont
 {
-    [_titleLabel setFont:titleFont];
+    [self.titleLabel setFont:titleFont];
 }
 
-- (void) setTextFont:(UIFont *)textFont
+- (void)setTextFont:(UIFont *)textFont
 {
-    [_textLabel setFont:textFont];
+    [self.textLabel setFont:textFont];
 }
 
--(void) setTitleText:(NSString*) string
+-(void)setTitleText:(NSString*) string
 {
-    _titleLabel.text = string;
+    self.titleLabel.text = string;
 }
 
--(void) setMessageText:(NSString*) string
+-(void)setMessageText:(NSString*) string
 {
-    _textLabel.text = string;
+    self.textLabel.text = string;
 }
 
 #pragma mark - Animations

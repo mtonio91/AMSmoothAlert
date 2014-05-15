@@ -9,15 +9,30 @@
 
 #import "AMSmoothAlertView.h"
 
-
+@interface AMSmoothAlertView ()
+@property (nonatomic, strong) UIView *alertView;
+@end
 
 @implementation AMSmoothAlertView
 {
-    UIView *alertView;
     AMBouncingView *circleView;
     UIImageView * bg;
     GPUImageiOSBlurFilter *_blurFilter;
 
+}
+
+-(UIView*)alertView
+{
+    if (_alertView == nil) {
+        _alertView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
+        _alertView.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
+        _alertView.center = CGPointMake([self screenFrame].size.width/2, -[self screenFrame].size.height/2);
+        [_alertView.layer setShadowColor:[UIColor blackColor].CGColor];
+        [_alertView.layer setShadowOpacity:0.4];
+        [_alertView.layer setShadowRadius:20.0f];
+        [_alertView.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
+    }
+    return _alertView;
 }
 
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
@@ -104,33 +119,14 @@
   
     bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
   
-    alertView = [self alertPopupView];
-  
     [self performScreenshotAndBlur];
     
     [self labelSetupWithTitle:title andText:text];
     [self buttonSetupForType:type withCancelButton: hasCancelButton andColor:color];
-    [self addSubview:alertView];
+    [self addSubview:self.alertView];
   
     [self circleSetupForAlertType:type andColor:color];
 }
-
-
-- (UIView*) alertPopupView
-{
-    UIView * alertSquare = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 150)];
-    
-    alertSquare.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.937 alpha:1];
-    alertSquare.center = CGPointMake([self screenFrame].size.width/2, -[self screenFrame].size.height/2);
-    
-    [alertSquare.layer setShadowColor:[UIColor blackColor].CGColor];
-    [alertSquare.layer setShadowOpacity:0.4];
-    [alertSquare.layer setShadowRadius:20.0f];
-    [alertSquare.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
-    
-    return alertSquare;
-}
-
 
 - (void) show
 {
@@ -169,7 +165,7 @@
 
 - (void) circleSetupForAlertType:(AlertType) type andColor:(UIColor*) color
 {
-    UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-alertView.frame.size.height/2) , 60, 60)];
+    UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-self.alertView.frame.size.height/2) , 60, 60)];
     circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
     
     _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
@@ -198,22 +194,22 @@
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
 {
     _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-    _titleLabel.center = CGPointMake(alertView.frame.size.width/2, 45);
+    _titleLabel.center = CGPointMake(self.alertView.frame.size.width/2, 45);
     _titleLabel.text = title;
     _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20.0f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [alertView addSubview:_titleLabel];
+    [self.alertView addSubview:_titleLabel];
     
     
     _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
-    _textLabel.center = CGPointMake(alertView.frame.size.width/2, 80);
+    _textLabel.center = CGPointMake(self.alertView.frame.size.width/2, 80);
     _textLabel.text = text;
     _textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
     _textLabel.textAlignment = NSTextAlignmentCenter;
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _textLabel.numberOfLines = 0;
-    [alertView addSubview:_textLabel];
+    [self.alertView addSubview:_textLabel];
     
 }
 
@@ -223,11 +219,11 @@
     if (hasCancelButton) {
         //default button
         _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
-        _defaultButton.center = CGPointMake((alertView.frame.size.width/4)+3, 120);
+        _defaultButton.center = CGPointMake((self.alertView.frame.size.width/4)+3, 120);
 
         //cancel button
         _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
-        _cancelButton.center = CGPointMake((alertView.frame.size.width*3/4)-3, 120);
+        _cancelButton.center = CGPointMake((self.alertView.frame.size.width*3/4)-3, 120);
         _cancelButton.backgroundColor = [UIColor colorWithRed:0.792 green:0.792 blue:0.792 alpha:1];
         
         [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -237,7 +233,7 @@
         [_cancelButton.layer setCornerRadius:3.0f];
     }else{
         _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-        _defaultButton.center = CGPointMake(alertView.frame.size.width/2, 120);
+        _defaultButton.center = CGPointMake(self.alertView.frame.size.width/2, 120);
     }
 
     [self setColorForButton:color onButton:_defaultButton withType:type];
@@ -248,8 +244,8 @@
 	[_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     [_defaultButton.layer setCornerRadius:3.0f];
 
-    [alertView addSubview:_defaultButton];
-    if (hasCancelButton)[alertView addSubview:_cancelButton];
+    [self.alertView addSubview:_defaultButton];
+    if (hasCancelButton)[self.alertView addSubview:_cancelButton];
 
 }
 
@@ -331,14 +327,14 @@
     //block 2
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2)+alertView.frame.size.height*0.1);
+            self.alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2)+self.alertView.frame.size.height*0.1);
         } completion: getNextAnimation()];
     }];
     
     //block 3
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
+            self.alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
         } completion: getNextAnimation()];
     }];
     
@@ -355,9 +351,8 @@
 
 -(void) triggerFadeAnimations
 {
- 
-    alertView.alpha = 0;
-    alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
+    self.alertView.alpha = 0;
+    self.alertView.center = CGPointMake([self screenFrame].size.width/2, ([self screenFrame].size.height/2));
 
     NSMutableArray* animationBlocks = [NSMutableArray new];
     
@@ -385,7 +380,7 @@
     //block 2
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            alertView.alpha = 1;
+            self.alertView.alpha = 1;
         } completion: getNextAnimation()];
     }];
     
@@ -475,7 +470,7 @@
 
 - (void) setCornerRadius:(float)cornerRadius
 {
-    [alertView.layer setCornerRadius:cornerRadius];
+    [self.alertView.layer setCornerRadius:cornerRadius];
 }
 
 

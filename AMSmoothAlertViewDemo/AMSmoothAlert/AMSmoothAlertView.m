@@ -106,6 +106,8 @@
   
     alertView = [self alertPopupView];
   
+    [self performScreenshotAndBlur];
+    
     [self labelSetupWithTitle:title andText:text];
     [self buttonSetupForType:type withCancelButton: hasCancelButton andColor:color];
     [self addSubview:alertView];
@@ -125,8 +127,6 @@
     [alertSquare.layer setShadowOpacity:0.4];
     [alertSquare.layer setShadowRadius:20.0f];
     [alertSquare.layer setShadowOffset:CGSizeMake(0.0, 0.0)];
-    
-    [self performScreenshotAndBlur];
     
     return alertSquare;
 }

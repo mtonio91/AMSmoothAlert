@@ -56,6 +56,19 @@
     return _titleLabel;
 }
 
+-(UILabel *)textLabel
+{
+    if (_textLabel == nil) {
+        _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
+        _textLabel.center = CGPointMake(self.alertView.frame.size.width/2, 80);
+        _textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
+        _textLabel.textAlignment = NSTextAlignmentCenter;
+        _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _textLabel.numberOfLines = 0;
+    }
+    return _textLabel;
+}
+
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
     return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
@@ -217,14 +230,9 @@
     
     [self.alertView addSubview:self.titleLabel];
     
-    _textLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 180, 50)];
-    _textLabel.center = CGPointMake(self.alertView.frame.size.width/2, 80);
-    _textLabel.text = text;
-    _textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0f];
-    _textLabel.textAlignment = NSTextAlignmentCenter;
-    _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    _textLabel.numberOfLines = 0;
-    [self.alertView addSubview:_textLabel];
+    self.textLabel.text = text;
+    
+    [self.alertView addSubview:self.textLabel];
     
 }
 

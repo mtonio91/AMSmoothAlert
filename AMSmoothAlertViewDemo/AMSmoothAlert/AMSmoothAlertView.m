@@ -12,14 +12,11 @@
 @interface AMSmoothAlertView ()
 @property (nonatomic, strong) UIView *alertView;
 @property (nonatomic, strong) GPUImageiOSBlurFilter *blurFilter;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) AMBouncingView *circleView;
 @end
 
 @implementation AMSmoothAlertView
-{
-    AMBouncingView *circleView;
-    UIImageView * bg;
-
-}
 
 #pragma mark - Getters
 -(UIView*)alertView
@@ -174,10 +171,8 @@
     self.frame = [self screenFrame];
     self.opaque = YES;
     self.alpha = 1;
-  
-    
-  
-    bg = [[UIImageView alloc]initWithFrame:[self screenFrame]];
+
+    self.backgroundImageView = [[UIImageView alloc]initWithFrame:[self screenFrame]];
   
     [self performScreenshotAndBlur];
     
@@ -214,10 +209,10 @@
     UIImage * image = [self convertViewToImage];
     UIImage *blurredSnapshotImage = [self.blurFilter imageByFilteringImage:image];
     
-    [bg setImage:blurredSnapshotImage];
-    bg.alpha = 0.0;
+    [self.backgroundImageView setImage:blurredSnapshotImage];
+    self.backgroundImageView.alpha = 0.0;
     
-    [self addSubview:bg];
+    [self addSubview:self.backgroundImageView];
 }
 
 
@@ -226,7 +221,7 @@
 - (void) circleSetupForAlertType:(AlertType) type andColor:(UIColor*) color
 {
     UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-self.alertView.frame.size.height/2) , 60, 60)];
-    circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
+    self.circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
     
     _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
     
@@ -247,8 +242,8 @@
     _logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self addSubview:circleMask];
-    [circleMask addSubview:circleView];
     [circleMask addSubview:_logoView];
+    [circleMask addSubview:self.circleView];
 }
 
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
@@ -356,7 +351,7 @@
     //block 1
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            bg.alpha = 1.0;
+            self.backgroundImageView.alpha = 1.0;
         } completion: getNextAnimation()];
     }];
     
@@ -409,7 +404,7 @@
     //block 1
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.2 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            bg.alpha = 1.0;
+            self.backgroundImageView.alpha = 1.0;
         } completion: getNextAnimation()];
     }];
     
@@ -451,24 +446,24 @@
     //block 1
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            circleView.frame = [circleView newFrameWithWidth:85 andHeight:85];
-            _logoView.frame = [self newFrameForView:_logoView withWidth:40 andHeight:40];
+            self.circleView.frame = [self.circleView newFrameWithWidth:85 andHeight:85];
+            self.logoView.frame = [self newFrameForView:self.logoView withWidth:40 andHeight:40];
         } completion: getNextAnimation()];
     }];
     
     //block 2
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.1 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            circleView.frame = [circleView newFrameWithWidth:50 andHeight:50];
-            _logoView.frame = [self newFrameForView:_logoView withWidth:15 andHeight:15];
+            self.circleView.frame = [self.circleView newFrameWithWidth:50 andHeight:50];
+            self.logoView.frame = [self newFrameForView:self.logoView withWidth:15 andHeight:15];
         } completion: getNextAnimation()];
     }];
     
     //block 3
     [animationBlocks addObject:^(BOOL finished){;
         [UIView animateWithDuration:0.05 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            circleView.frame = [circleView newFrameWithWidth:60 andHeight:60];
-            _logoView.frame = [self newFrameForView:_logoView withWidth:20 andHeight:20];
+            self.circleView.frame = [self.circleView newFrameWithWidth:60 andHeight:60];
+            self.logoView.frame = [self newFrameForView:self.logoView withWidth:20 andHeight:20];
         } completion: getNextAnimation()];
     }];
     

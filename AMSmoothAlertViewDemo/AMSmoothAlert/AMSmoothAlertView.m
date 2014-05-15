@@ -14,6 +14,8 @@
 @property (nonatomic, strong) GPUImageiOSBlurFilter *blurFilter;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) AMBouncingView *circleView;
+@property (nonatomic, copy) void(^defaultActionBlock)();
+@property (nonatomic, copy) void(^cancelActionBlock)();
 @end
 
 @implementation AMSmoothAlertView
@@ -75,7 +77,7 @@
         [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
         _cancelButton.titleLabel.textColor = [UIColor whiteColor];
         _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-		[_cancelButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+		[_cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_cancelButton.layer setCornerRadius:3.0f];
     }
     return _cancelButton;
@@ -87,163 +89,66 @@
         _defaultButton = [UIButton new];
         [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
         _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-        [_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [_defaultButton addTarget:self action:@selector(defaultButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [_defaultButton.layer setCornerRadius:3.0f];
     }
     return _defaultButton;
 }
 
-- (id) initDropAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-{
-    return [self initDropAlertWithTitle:title
-                                andText:text
-                        andCancelButton:hasCancelButton
-                           forAlertType:type
-                               andColor:nil];
-}
-
-- (id) initDropAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-                     andColor:(UIColor*)color
+- (id)initDropAlertWithTitle:(NSString*)title
+                     andText:(NSString*)text
+                forAlertType:(AlertType)type
+                    andColor:(UIColor*)color
+     withDefaultButtonAction:(void(^)(void))defaultButtonAction
+      withCancelButtonAction:(void(^)(void))cancelButtonAction
 {
     self = [super init];
     if (self) {
-        _animationType = DropAnimation;
-        [self _initViewWithTitle:title
-                         andText:text
-                 andCancelButton:hasCancelButton
-                    forAlertType:type
-                        andColor:color];
+        self.frame = [self screenFrame];
+        self.opaque = YES;
+        self.alpha = 1;
+        
+        self.backgroundImageView = [[UIImageView alloc]initWithFrame:[self screenFrame]];
+        
+        [self performScreenshotAndBlur];
+        
+        self.titleLabel.text = title;
+        
+        [self.alertView addSubview:self.titleLabel];
+        
+        self.textLabel.text = text;
+        
+        [self.alertView addSubview:self.textLabel];
+        
+        _defaultActionBlock = defaultButtonAction;
+        
+        if (cancelButtonAction)
+        {
+            _cancelActionBlock = cancelButtonAction;
+            
+            [self.alertView addSubview:self.cancelButton];
+            
+            self.defaultButton.frame = CGRectMake(0, 0, 84, 30);
+            self.defaultButton.center = CGPointMake((self.alertView.frame.size.width/4)+3, 120);
+        }
+        else
+        {
+            self.defaultButton.frame = CGRectMake(0, 0, 180, 30);
+            self.defaultButton.center = CGPointMake(self.alertView.frame.size.width/2, 120);
+        }
+        
+        [self setColorForButton:color
+                       onButton:self.defaultButton
+                       withType:type];
+        
+        [self.alertView addSubview:self.defaultButton];
+        
+        [self addSubview:self.alertView];
+        
+        [self circleSetupForAlertType:type andColor:color];
+        
     }
     return self;
-}
-
-
-- (id) initFadeAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-{
-    return [self initFadeAlertWithTitle:title
-                                andText:text
-                        andCancelButton:hasCancelButton
-                           forAlertType:type
-                               andColor:nil];
-}
-
-- (id) initFadeAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-                     andColor:(UIColor*) color
-{
-    self = [super init];
-    if (self) {
-        _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title
-                         andText:text
-                 andCancelButton:hasCancelButton
-                    forAlertType:type
-                        andColor:color];
-    }
-    return self;
-}
-
-
-- (id) initDropAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-        withCompletionHandler:(dismissAlertWithButton)completionHandler
-{
-    self.completionBlock = completionHandler;
-    return [self initDropAlertWithTitle:title
-                                andText:text
-                        andCancelButton:hasCancelButton
-                           forAlertType:type
-                               andColor:nil];
-}
-
-- (id) initDropAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-                     andColor:(UIColor*)color
-        withCompletionHandler:(dismissAlertWithButton) completionHandler
-{
-    self = [super init];
-    if (self) {
-        self.completionBlock = completionHandler;
-        _animationType = DropAnimation;
-        [self _initViewWithTitle:title
-                         andText:text
-                 andCancelButton:hasCancelButton
-                    forAlertType:type
-                        andColor:color];
-    }
-    return self;
-}
-
-
-- (id) initFadeAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-        withCompletionHandler:(dismissAlertWithButton)completionHandler
-{
-    self.completionBlock = completionHandler;
-    return [self initFadeAlertWithTitle:title
-                                andText:text
-                        andCancelButton:hasCancelButton
-                           forAlertType:type
-                               andColor:nil];
-}
-
-- (id) initFadeAlertWithTitle:(NSString*)title
-                      andText:(NSString*)text
-              andCancelButton:(BOOL)hasCancelButton
-                 forAlertType:(AlertType)type
-                     andColor:(UIColor*)color
-        withCompletionHandler:(dismissAlertWithButton)completionHandler
-{
-    self = [super init];
-    if (self) {
-        self.completionBlock = completionHandler;
-        _animationType = FadeInAnimation;
-        [self _initViewWithTitle:title
-                         andText:text
-                 andCancelButton:hasCancelButton
-                    forAlertType:type
-                        andColor:color];
-    }
-    return self;
-}
-
-
-- (void) _initViewWithTitle:(NSString *)title
-                    andText:(NSString *)text
-            andCancelButton:(BOOL)hasCancelButton
-               forAlertType:(AlertType)type
-                   andColor:(UIColor*)color
-{
-    self.frame = [self screenFrame];
-    self.opaque = YES;
-    self.alpha = 1;
-
-    self.backgroundImageView = [[UIImageView alloc]initWithFrame:[self screenFrame]];
-  
-    [self performScreenshotAndBlur];
-    
-    [self labelSetupWithTitle:title andText:text];
-    [self buttonSetupForType:type withCancelButton: hasCancelButton andColor:color];
-    [self addSubview:self.alertView];
-  
-    [self circleSetupForAlertType:type andColor:color];
 }
 
 - (void) show
@@ -308,41 +213,6 @@
     [circleMask addSubview:self.circleView];
     [circleMask addSubview:self.logoView];
 }
-
-- (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text
-{
-    self.titleLabel.text = title;
-    
-    [self.alertView addSubview:self.titleLabel];
-    
-    self.textLabel.text = text;
-    
-    [self.alertView addSubview:self.textLabel];
-    
-}
-
-- (void)buttonSetupForType:(AlertType)type withCancelButton:(BOOL)hasCancelButton andColor:(UIColor*)color
-{
-    if (hasCancelButton)
-    {
-        [self.alertView addSubview:self.cancelButton];
-        
-        self.defaultButton.frame = CGRectMake(0, 0, 84, 30);
-        self.defaultButton.center = CGPointMake((self.alertView.frame.size.width/4)+3, 120);
-    }
-    else
-    {
-        self.defaultButton.frame = CGRectMake(0, 0, 180, 30);
-        self.defaultButton.center = CGPointMake(self.alertView.frame.size.width/2, 120);
-    }
-    
-    [self setColorForButton:color
-                   onButton:self.defaultButton
-                   withType:type];
-    
-    [self.alertView addSubview:self.defaultButton];
-}
-
 
 - (void) setColorForButton:(UIColor*) color onButton:(UIButton*) btn withType:(AlertType)type
 {
@@ -595,20 +465,16 @@
                       height);
 }
 
-#pragma mark - Delegate Methods
-- (void)handleButtonTouched:(id)sender {
-	[self dismissAlertView];
+-(void)cancelButtonPressed:(UIButton*)cancelButton
+{
+    [self dismissAlertView];
+    self.cancelActionBlock();
+}
 
-	id<AMSmoothAlertViewDelegate> delegate = self.delegate;
-	UIButton *button = (UIButton *) sender;
-	if ([delegate respondsToSelector:@selector(alertView:didDismissWithButton:)]) {
-		// Since there isn't a button index for the alertView, pass the button
-		[delegate alertView:self didDismissWithButton:button];
-	}
-    
-    if(self.completionBlock) {
-        self.completionBlock(self, button);
-    }
+-(void)defaultButtonPressed:(UIButton*)defaultButton
+{
+    [self dismissAlertView];
+    self.defaultActionBlock();
 }
 
 @end

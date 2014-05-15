@@ -69,6 +69,33 @@
     return _textLabel;
 }
 
+-(UIButton*)cancelButton
+{
+    if (_cancelButton == nil) {
+        _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
+        _cancelButton.center = CGPointMake((self.alertView.frame.size.width*3/4)-3, 120);
+        _cancelButton.backgroundColor = [UIColor colorWithRed:0.792 green:0.792 blue:0.792 alpha:1];
+        [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        _cancelButton.titleLabel.textColor = [UIColor whiteColor];
+        _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+		[_cancelButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [_cancelButton.layer setCornerRadius:3.0f];
+    }
+    return _cancelButton;
+}
+
+-(UIButton*)defaultButton
+{
+    if (_defaultButton == nil) {
+        _defaultButton = [UIButton new];
+        [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
+        _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+        [_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
+        [_defaultButton.layer setCornerRadius:3.0f];
+    }
+    return _defaultButton;
+}
+
 - (id) initDropAlertWithTitle:(NSString*) title andText:(NSString*) text andCancelButton:(BOOL)hasCancelButton forAlertType:(AlertType) type
 {
     return [self initDropAlertWithTitle:title andText:text andCancelButton:hasCancelButton forAlertType:type andColor:nil];
@@ -236,40 +263,26 @@
     
 }
 
-- (void) buttonSetupForType:(AlertType)type withCancelButton:(BOOL) hasCancelButton andColor:(UIColor*) color
+- (void)buttonSetupForType:(AlertType)type withCancelButton:(BOOL)hasCancelButton andColor:(UIColor*)color
 {
- 
-    if (hasCancelButton) {
-        //default button
-        _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
-        _defaultButton.center = CGPointMake((self.alertView.frame.size.width/4)+3, 120);
-
-        //cancel button
-        _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 30)];
-        _cancelButton.center = CGPointMake((self.alertView.frame.size.width*3/4)-3, 120);
-        _cancelButton.backgroundColor = [UIColor colorWithRed:0.792 green:0.792 blue:0.792 alpha:1];
+    if (hasCancelButton)
+    {
+        [self.alertView addSubview:self.cancelButton];
         
-        [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-        _cancelButton.titleLabel.textColor = [UIColor whiteColor];
-        _cancelButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-		[_cancelButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-        [_cancelButton.layer setCornerRadius:3.0f];
-    }else{
-        _defaultButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 180, 30)];
-        _defaultButton.center = CGPointMake(self.alertView.frame.size.width/2, 120);
+        self.defaultButton.frame = CGRectMake(0, 0, 84, 30);
+        self.defaultButton.center = CGPointMake((self.alertView.frame.size.width/4)+3, 120);
     }
-
-    [self setColorForButton:color onButton:_defaultButton withType:type];
+    else
+    {
+        self.defaultButton.frame = CGRectMake(0, 0, 180, 30);
+        self.defaultButton.center = CGPointMake(self.alertView.frame.size.width/2, 120);
+    }
     
-    //default button end setup
-    [_defaultButton setTitle:@"OK !" forState:UIControlStateNormal];
-    _defaultButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
-	[_defaultButton addTarget:self action:@selector(handleButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
-    [_defaultButton.layer setCornerRadius:3.0f];
-
-    [self.alertView addSubview:_defaultButton];
-    if (hasCancelButton)[self.alertView addSubview:_cancelButton];
-
+    [self setColorForButton:color
+                   onButton:self.defaultButton
+                   withType:type];
+    
+    [self.alertView addSubview:self.defaultButton];
 }
 
 

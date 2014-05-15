@@ -223,27 +223,27 @@
     UIView * circleMask = [[UIView alloc]initWithFrame:CGRectMake([self screenFrame].size.width/2, (([self screenFrame].size.height/2)-self.alertView.frame.size.height/2) , 60, 60)];
     self.circleView = [[AMBouncingView alloc]initSuccessCircleWithFrame:CGRectMake(0, 0, 0, 0) andImageSize:60 forAlertType:type andColor:color];
     
-    _logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
+    self.logoView = [[UIImageView alloc]initWithFrame:CGRectMake(circleMask.frame.size.width/2-30, circleMask.frame.size.height/2-30 , 0, 0)];
     
     switch (type) {
         case AlertSuccess:
-            [_logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
+            [self.logoView setImage:[UIImage imageNamed:@"checkMark.png"]];
             break;
         case AlertFailure:
-            [_logoView setImage:[UIImage imageNamed:@"crossMark.png"]];
+            [self.logoView setImage:[UIImage imageNamed:@"crossMark.png"]];
             break;
         case AlertInfo:
-            [_logoView setImage:[UIImage imageNamed:@"info.png"]];
+            [self.logoView setImage:[UIImage imageNamed:@"info.png"]];
             break;
 
         default:
             break;
     }
-    _logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.logoView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     
     [self addSubview:circleMask];
-    [circleMask addSubview:_logoView];
     [circleMask addSubview:self.circleView];
+    [circleMask addSubview:self.logoView];
 }
 
 - (void) labelSetupWithTitle:(NSString*) title andText:(NSString*) text

@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   s.resources = 'AMSmoothAlert/assets/*.png'
 
 
-  s.frameworks = "GPUImage", "Foundation", "CoreGraphics", "UIKit", "Foundation"
+  s.frameworks = "Foundation", "CoreGraphics", "UIKit", "Foundation"
 
 
 

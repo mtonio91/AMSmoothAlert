@@ -9,62 +9,90 @@
 #import "AMViewController.h"
 
 @interface AMViewController ()
-
+@property (nonatomic, strong) AMSmoothAlertView *alertView;
 @end
 
 @implementation AMViewController
+
+- (IBAction)openPopup:(id)sender
 {
-    AMSmoothAlertView * alert;
-    bool isPopupShown;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)openPopup:(id)sender {
-
-    if (!alert || !alert.isDisplayed) {
+    if (!self.alertView || !self.alertView.isDisplayed)
+    {
         UIButton * btn = (UIButton*) sender;
-        switch (btn.tag) {
+        
+        switch (btn.tag)
+        {
             case AlertSuccess:
-                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Congrats !" andText:@"You've just displayed this awesome alert view !" andCancelButton:NO forAlertType:AlertSuccess];
-                [alert.defaultButton setTitle:@"Great" forState:UIControlStateNormal];
-                alert.completionBlock = ^void (AMSmoothAlertView *alertObj, UIButton *button) {
-                    if(button == alertObj.defaultButton) {
-                        NSLog(@"Default");
-                    } else {
-                        NSLog(@"Others");
-                    }
-                };
+            {
+                self.alertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Congrats !"
+                                                                           andText:@"You've just displayed this awesome alert view !"
+                                                                      forAlertType:AlertSuccess
+                                                                          andColor:nil
+                                                           withDefaultButtonAction:^{
+                                                               NSLog(@"Default touched");
+                                                           } withCancelButtonAction:nil];
+            
+                [self.alertView.defaultButton setTitle:@"Great" forState:UIControlStateNormal];
+            }
                 break;
             case AlertFailure:
-                alert = [[AMSmoothAlertView alloc]initFadeAlertWithTitle:@"Sorry !" andText:@"You've just displayed this awesome alert view !" andCancelButton:NO forAlertType:AlertFailure];
-                [alert.defaultButton setTitle:@"Too Bad :(" forState:UIControlStateNormal];
+            {
+                self.alertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Sorry !"
+                                                                           andText:@"You've just displayed this awesome alert view !"
+                                                                      forAlertType:AlertFailure
+                                                                          andColor:nil
+                                                           withDefaultButtonAction:^{
+                                                               NSLog(@"Default touched");
+                                                           } withCancelButtonAction:nil];
+                
+                [self.alertView.defaultButton setTitle:@"Too Bad :(" forState:UIControlStateNormal];
+            }
                 break;
             case AlertInfo:
-                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view !" andCancelButton:YES forAlertType:AlertInfo];
-                [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+            {
+                self.alertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Notice !"
+                                                                           andText:nil
+                                                                      forAlertType:AlertInfo
+                                                                          andColor:nil
+                                                           withDefaultButtonAction:^{
+                                                               NSLog(@"Default touched");
+                                                           } withCancelButtonAction:^{
+                                                               NSLog(@"Cancel touched");
+                                                           }];
+                
+                [self.alertView setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+            }
                 break;
             case 3:
+            {
                 // Custom colored alert of type AlertInfo, custom colors can be applied to any alert type
-                alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"You've just displayed this awesome alert view! With a custom color!" andCancelButton:YES forAlertType:AlertInfo andColor:[UIColor colorWithRed:0.607 green:0.372 blue:0.862 alpha:1]];
-                [alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+                self.alertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Notice !"
+                                                                           andText:nil
+                                                                      forAlertType:AlertInfo
+                                                                          andColor:[UIColor colorWithRed:0.607 green:0.372 blue:0.862 alpha:1]
+                                                           withDefaultButtonAction:^{
+                                                               NSLog(@"Default touched");
+                                                           } withCancelButtonAction:^{
+                                                               NSLog(@"Cancel touched");
+                                                           }];
+                
+                [self.alertView setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+            }
                 break;
             case 4:
-				alert = [[AMSmoothAlertView alloc]initDropAlertWithTitle:@"Notice !" andText:@"This fires the delegate methods; Check your console!" andCancelButton:YES forAlertType:AlertInfo];
-				[alert setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
-                alert.tag = 0;
-				alert.delegate = self;
+            {
+                self.alertView = [[AMSmoothAlertView alloc] initDropAlertWithTitle:@"Notice !"
+                                                                           andText:@"This fires the delegate methods; Check your console!"
+                                                                      forAlertType:AlertInfo
+                                                                          andColor:nil
+                                                           withDefaultButtonAction:^{
+                                                               NSLog(@"Default touched");
+                                                           } withCancelButtonAction:^{
+                                                               NSLog(@"Cancel touched");
+                                                           }];
+                
+				[self.alertView setTitleFont:[UIFont fontWithName:@"Verdana" size:25.0f]];
+            }
 				break;
 
                 
@@ -72,28 +100,21 @@
                 break;
         }
         
-        alert.cornerRadius = 3.0f;
-//        [self.view addSubview:alert];
-        [alert show];
-    }else{
-        [alert dismissAlertView];
+        self.alertView.tag = 0;
+        
+        self.alertView.delegate = self;
+        
+        self.alertView.cornerRadius = 3.0f;
+        
+        [self.alertView show];
     }
-    
-
+    else
+    {
+        [self.alertView dismissAlertView];
+    }
 }
 
 #pragma mark - Delegates
-- (void)alertView:(AMSmoothAlertView *)alertView didDismissWithButton:(UIButton *)button {
-	if (alertView == alert) {
-		if (button == alert.defaultButton) {
-			NSLog(@"Default button touched!");
-		}
-		if (button == alert.cancelButton) {
-			NSLog(@"Cancel button touched!");
-		}
-	}
-}
-
 - (void)alertViewWillShow:(AMSmoothAlertView *)alertView {
     if (alertView.tag == 0)
         NSLog(@"AlertView Will Show: '%@'", alertView.titleLabel.text);
@@ -110,6 +131,5 @@
 - (void)alertViewDidDismiss:(AMSmoothAlertView *)alertView {
 	NSLog(@"AlertView Did Dismiss: '%@'", alertView.titleLabel.text);
 }
-
 
 @end
